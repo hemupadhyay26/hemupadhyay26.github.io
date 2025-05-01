@@ -1,0 +1,55 @@
+body {
+  margin: 0; /* Remove default margin for full-width effect */
+  height: 100vh;
+  color: var(--color-primary);
+  font-family: "Montserrat";
+  background: var(--color-background); /* Default background for mobile devices */
+}
+
+/* Apply strip pattern for devices larger than 640px (example breakpoint) */
+@media (min-width: 640px) {
+  body {
+    background: linear-gradient(
+      to right,
+      var(--color-background) 40%, /* First block: black */
+      var(--color-primary) 40%,    /* Transition to white */
+      var(--color-primary) 60%,    /* Second block: white */
+      var(--color-background) 60% /* Third block: black */
+    );
+  }
+}
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%); /* Scroll fully to the left */
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 10s linear infinite;
+}
+
+/* Adjust animation speed for mobile */
+@media (max-width: 768px) {
+  .animate-infinite-scroll {
+    animation-duration: 15s; /* Slower scroll on mobile */
+  }
+}
+
+/* Adjust animation speed for large screens */
+@media (min-width: 1024px) {
+  .animate-infinite-scroll {
+    animation-duration: 10s; /* Faster scroll on larger screens */
+  }
+}
+
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* WebKit browsers */
+}

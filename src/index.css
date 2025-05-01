@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Montserrat', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+:root {
+  --color-primary: #dac5a7;
+  --color-secondary: #7f7466;
+  --color-box: #22211e;
+  --color-background: #0e0e0e;
+  --color-white: white;
+  --color-black: black;
+}
+
+/* Custom Scrollbar Styling */
+@layer utilities {
+  ::-webkit-scrollbar {
+    width: 12px; /* Set the width of the scrollbar */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary); /* Thumb uses primary color */
+    border-radius: 6px; /* Make the thumb rounded */
+    border: 3px solid var(--color-secondary); /* Create spacing around the thumb using secondary color */
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: var(--color-box); /* Track uses box color */
+    border-radius: 6px; /* Round the track edges */
+  }
+
+  /* Firefox Scrollbar Styles */
+  * {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: var(--color-primary) var(--color-box); /* Thumb and track colors */
+  }
+}
