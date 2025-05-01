@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/static/css/main.7347081d.css",
-    "main.js": "/static/js/main.cfc26184.js",
+    "main.js": "/static/js/main.5efa31dd.js",
     "static/js/453.5e192943.chunk.js": "/static/js/453.5e192943.chunk.js",
     "static/media/hero.png": "/static/media/hero.61b4d31dc4a96acb76d3.png",
     "static/media/ssh-mangement.jpg": "/static/media/ssh-mangement.2fa499a72d8eb472664a.jpg",
-    "static/media/Resume2Full.pdf": "/static/media/Resume2Full.6d822f35683cbf42c3ce.pdf",
+    "static/media/Resume2Full.pdf": "/static/media/Resume2Full.b5a01e8dff6222b5db11.pdf",
     "static/media/hero2.jpeg": "/static/media/hero2.2fcc2f306d263a1ce5b3.jpeg",
     "static/media/action-email-notification.jpg": "/static/media/action-email-notification.e5b8d226ca9febd9963b.jpg",
     "static/media/githubAction.png": "/static/media/githubAction.9dfaddbea6a12a1ad4dc.png",
     "index.html": "/index.html",
     "static/media/terraform.svg": "/static/media/terraform.76fc0c987b75018c742e027ad35c5239.svg",
     "main.7347081d.css.map": "/static/css/main.7347081d.css.map",
-    "main.cfc26184.js.map": "/static/js/main.cfc26184.js.map",
+    "main.5efa31dd.js.map": "/static/js/main.5efa31dd.js.map",
     "453.5e192943.chunk.js.map": "/static/js/453.5e192943.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7347081d.css",
-    "static/js/main.cfc26184.js"
+    "static/js/main.5efa31dd.js"
   ]
 }
