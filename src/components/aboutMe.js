@@ -38,8 +38,8 @@ const AboutMe = () => {
                             <p className="text-secondary">Hem Chandra Upadhyay</p>
                         </div>
                         <div className="bg-box p-4 rounded-lg shadow-md border-l-4 border-primary">
-                            <h5 className="font-semibold text-lg text-primary">Email:</h5>
-                            <p className="text-secondary">hemupadhyay234@gmail.com</p>
+                            <h5 className="font-semibold text-lg text-primary">Dev.to:</h5>
+                            <p className="text-secondary">https://dev.to/hem_upadhyay_ad9428dc9ddc</p>
                         </div>
                         <div className="bg-box p-4 rounded-lg shadow-md border-l-4 border-primary">
                             <h5 className="font-semibold text-lg text-primary">Location:</h5>

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import heroImage from "../assets/hero.png";
 import CircularText from "../blocks/TextAnimations/CircularText/CircularText";
 import ShinyText from "../blocks/TextAnimations/ShinyText/ShinyText";
@@ -5,6 +6,23 @@ import RotatingText from "../blocks/TextAnimations/RotatingText/RotatingText";
 import ResumePdf from "../assets/Resume2Full.pdf";
 
 const Introduction = () => {
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+    useEffect(() => {
+        const img = new Image();
+        img.src = heroImage;
+        img.onload = () => setIsImageLoaded(true);
+    }, []);
+
+    if (!isImageLoaded) {
+        // Show a loading spinner or placeholder while the image is loading
+        return (
+            <div className="flex justify-center items-center h-screen text-primary md:text-box">
+                <p>Loading...</p>
+            </div>
+        );
+    }
+
     return (
         <div className="px-4">
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
@@ -43,7 +61,6 @@ const Introduction = () => {
                         I'm Hem Chandra Upadhyay, a Computer Science graduate skilled in data structures, algorithms, AWS Cloud, and DevOps. I've developed various projects and am proficient in Bash, Git, JavaScript, SQL, and frameworks like ReactJS, React Native, and NodeJS.
                     </p>
 
-
                     {/* Container for Let’s Talk and CircularText */}
                     <div className="flex flex-col items-center md:items-start">
                         <button
@@ -55,7 +72,6 @@ const Introduction = () => {
                                 &#8594;
                             </span>
                         </button>
-
 
                         {/* Circular Component Below Let’s Talk (Hidden on Mobile) */}
                         <div className="hidden md:block mt-6">
