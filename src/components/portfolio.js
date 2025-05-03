@@ -1,5 +1,6 @@
 import sshManagement from '../assets/ssh-mangement.jpg';
 import actionEmailNotification from '../assets/action-email-notification.jpg';
+import slackNotificationTemplate from '../assets/slack-notification-template.png';
 
 const Portfolio = () => {
     const projects = [
@@ -15,6 +16,12 @@ const Portfolio = () => {
             image: actionEmailNotification,
             githubUrl: "https://github.com/hemupadhyay26/action-email-notification",
         },
+        {
+            name: "Slack Github Action Template",
+            description: "A template for creating send notifications to Slack channels, enhancing team communication during CI/CD processes.",
+            image: slackNotificationTemplate,
+            githubUrl: "https://github.com/hemupadhyay26/slack-github-action-template",
+        }
     ];
 
     return (
