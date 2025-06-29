@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 const Services = () => {
     const jobs = [
-        { number: "01.", title: "Software Development", description: "Creating responsive and user-friendly websites." },
+        { number: "01.", title: "Software Development", description: "Creating software help people." },
         { number: "02.", title: "DevOps", description: "Streamlining development and deployment processes." },
         { number: "03.", title: "AWS", description: "Providing scalable cloud-based solutions." },
         { number: "04.", title: "CI/CD", description: "Automating software delivery pipelines efficiently." },
