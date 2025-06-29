@@ -3,7 +3,7 @@ import heroImage from "../assets/hero.png";
 import CircularText from "../blocks/TextAnimations/CircularText/CircularText";
 import ShinyText from "../blocks/TextAnimations/ShinyText/ShinyText";
 import RotatingText from "../blocks/TextAnimations/RotatingText/RotatingText";
-import ResumePdf from "../assets/Resume2Full.pdf";
+import ResumePdf from "../assets/hemUpadhyayResume.pdf";
 
 const Introduction = () => {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
