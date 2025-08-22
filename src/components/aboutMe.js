@@ -1,6 +1,6 @@
 import hero2 from '../assets/hero2.jpeg';
 import ShinyText from '../blocks/TextAnimations/ShinyText/ShinyText';
-import ResumePdf from "../assets/hemUpadhyayResume.pdf";
+import ResumePdf from "../assets/resume-3.14.pdf";
 
 const AboutMe = () => {
     return (
