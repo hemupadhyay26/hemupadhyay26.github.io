@@ -2,12 +2,15 @@ import { useRef } from "react";
 
 const Services = () => {
     const jobs = [
-        { number: "01.", title: "Software Development", description: "Creating software help people." },
+        { number: "01.", title: "Software Development", description: "Creating software help people by solving problems." },
         { number: "02.", title: "DevOps", description: "Streamlining development and deployment processes." },
         { number: "03.", title: "AWS", description: "Providing scalable cloud-based solutions." },
         { number: "04.", title: "CI/CD", description: "Automating software delivery pipelines efficiently." },
         { number: "05.", title: "Dockerization", description: "Containerizing applications for consistency and scalability." },
         { number: "06.", title: "Terraform", description: "Infrastructure as code for provisioning cloud resources." },
+        { number: "07.", title: "Monitoring", description: "Implementing monitoring solutions for system health and performance." },
+        { number: "08.", title: "Scripting", description: "Automating tasks using Python and Bash scripts." },
+        { number: "09.", title: "Security", description: "Ensuring application and data security best practices." },
         // { number: "07.", title: "Kubernetes", description: "Automating deployment, scaling, and management of containerized applications." },
     ];
 

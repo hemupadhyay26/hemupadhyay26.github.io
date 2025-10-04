@@ -3,9 +3,9 @@ import { useEffect, useState, useMemo } from "react";
 const DynamicTextAnimation = () => {
   const texts = useMemo(() => [
     'Hem Chandra Upadhyay',
-    'Developer',
-    'Creative Designer',
     'Tech Enthusiast',
+    'Creative Designer',
+    'AI/ML Enthusiast',
     'DevOps Engineer'
   ], []); // ✅ useMemo ensures texts array doesn't change on every render
 

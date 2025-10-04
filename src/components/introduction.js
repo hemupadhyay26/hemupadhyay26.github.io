@@ -7,6 +7,18 @@ import ResumePdf from "../assets/resume-3.14.pdf";
 
 const Introduction = () => {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
+    const [copied, setCopied] = useState(false);
+    const email = "hemupadhyay234@gmail.com";
+
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(email);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 3000); // revert after 5s
+        } catch (err) {
+            console.error("Failed to copy email:", err);
+        }
+    };
 
     useEffect(() => {
         const img = new Image();
@@ -15,7 +27,6 @@ const Introduction = () => {
     }, []);
 
     if (!isImageLoaded) {
-        // Show a loading spinner or placeholder while the image is loading
         return (
             <div className="flex justify-center items-center h-screen text-primary md:text-box">
                 <p>Loading...</p>
@@ -58,19 +69,24 @@ const Introduction = () => {
                 <div className="flex-1 text-center md:text-left order-2 md:order-3">
                     <h4 className="text-2xl md:text-3xl font-bold text-primary mb-4">I am a DevOps engineer</h4>
                     <p className="text-base md:text-lg text-secondary mb-6">
-                        I'm Hem Chandra Upadhyay, a Computer Science graduate skilled in data structures, algorithms, AWS Cloud, and DevOps. I've developed various projects and am proficient in Bash, Git, JavaScript, SQL, and frameworks like ReactJS, React Native, and NodeJS.
+                        I'm Hem Chandra Upadhyay, a Computer Science graduate skilled in data structures, algorithms, AWS, and DevOps. I've developed various projects and I am proficient in Bash, Git, JavaScript, Python, SQL, and frameworks like ReactJS, and NodeJS.
                     </p>
 
-                    {/* Container for Let’s Talk and CircularText */}
+                    {/* Copy Email Button */}
                     <div className="flex flex-col items-center md:items-start">
                         <button
-                            onClick={() => alert("Contact form will be available soon!")}
+                            onClick={handleCopy}
                             className="group text-primary font-bold text-lg md:text-xl flex items-center justify-center md:justify-start transition-all duration-300 hover:text-secondary"
                         >
-                            Let’s Talk
-                            <span className="ml-2 text-xl md:text-2xl transform transition-all duration-300 group-hover:translate-x-2">
-                                &#8594;
-                            </span>
+                            {copied ? (
+                                <>
+                                    Copied!
+                                </>
+                            ) : (
+                                <>
+                                    Copy Email
+                                </>
+                            )}
                         </button>
 
                         {/* Circular Component Below Let’s Talk (Hidden on Mobile) */}

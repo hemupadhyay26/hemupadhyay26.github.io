@@ -29,7 +29,7 @@ const AboutMe = () => {
                     <h3 className="text-2xl font-bold text-primary">About Me</h3>
                     <ShinyText text="Hem Chandra Upadhyay" disabled={false} speed={3} className='text-3xl font-bold' />
                     <div className="text-secondary max-w-full md:max-w-md">
-                        I'm Hem Chandra Upadhyay, a Computer Science graduate skilled in data structures, algorithms, AWS Cloud, and DevOps. I've developed various projects and am proficient in Bash, Git, JavaScript, SQL, and frameworks like ReactJS, React Native, and NodeJS.
+                        I'm Hem Chandra Upadhyay, a Computer Science graduate skilled in data structures, algorithms, AWS, and DevOps. I've developed various projects and I am proficient in Bash, Git, JavaScript, Python, SQL, and frameworks like ReactJS, and NodeJS.
                     </div>
                     {/* Cards with Name and Other Details */}
                     <div className="space-y-4">
@@ -38,9 +38,18 @@ const AboutMe = () => {
                             <p className="text-secondary">Hem Chandra Upadhyay</p>
                         </div>
                         <div className="bg-box p-4 rounded-lg shadow-md border-l-4 border-primary">
-                            <h5 className="font-semibold text-lg text-primary">Dev.to:</h5>
-                            <p className="text-secondary">https://dev.to/hem_upadhyay_ad9428dc9ddc</p>
+                            <h5 className="font-semibold text-lg text-primary">LinkedIn:</h5>
+                            <a
+                                href="https://www.linkedin.com/in/hem-upadhyay-4460b31b9/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <p className="text-secondary hover:underline">
+                                    https://www.linkedin.com/in/hem-upadhyay-4460b31b9/
+                                </p>
+                            </a>
                         </div>
+
                         <div className="bg-box p-4 rounded-lg shadow-md border-l-4 border-primary">
                             <h5 className="font-semibold text-lg text-primary">Location:</h5>
                             <p className="text-secondary">Uttarakhand, India</p>

@@ -2,20 +2,27 @@ import React, { useEffect, useRef } from "react";
 import aws from "../assets/bannerLogo/aws.png"
 import terraform from "../assets/bannerLogo/terraform.svg"
 import githubAction from "../assets/bannerLogo/githubAction.png"
+import python from "../assets/bannerLogo/python.png"
+import nodejs from "../assets/bannerLogo/nodejs.png"
+import docker from "../assets/bannerLogo/docker.png"
+import k8s from "../assets/bannerLogo/k8s.png"
+import sonarqube from "../assets/bannerLogo/sonarqube.png"
+import grafana from "../assets/bannerLogo/grafana.png"
+
 const TechBanner = () => {
     const techList = [
         { name: "React" },
+        { name: "Sonarqube", logo:sonarqube },
         { name: "JavaScript" },
-        { name: "Node.js" },
-        { name: "CSS" },
-        { name: "HTML" },
+        { name: "Node.js", logo: nodejs },
         { name: "Devops" },
+        { name: "Python" , logo: python },
         { name: "Github Action", logo: githubAction },
-        { name: "Automation" },
-        { name: "AWS", logo:aws },
         { name: "Terraform", logo:terraform },
-        { name: "Docker" },
-        { name: "kubernetes" },
+        { name: "AWS", logo:aws },
+        { name: "Grafana", logo:grafana },
+        { name: "Docker", logo:docker },
+        { name: "Kubernetes", logo:k8s },
     ];
 
     const logosRef = useRef(null);
