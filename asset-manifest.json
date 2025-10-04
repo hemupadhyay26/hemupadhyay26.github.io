@@ -1,23 +1,28 @@
 {
   "files": {
-    "main.css": "/static/css/main.c563529a.css",
-    "main.js": "/static/js/main.7f7f2ca3.js",
+    "main.css": "/static/css/main.637dd9ed.css",
+    "main.js": "/static/js/main.72f3f0ae.js",
     "static/js/453.5e192943.chunk.js": "/static/js/453.5e192943.chunk.js",
     "static/media/hero.png": "/static/media/hero.2545067a2f186161ec22.png",
     "static/media/ssh-mangement.jpg": "/static/media/ssh-mangement.2fa499a72d8eb472664a.jpg",
     "static/media/slack-notification-template.png": "/static/media/slack-notification-template.3a6276b07c5da0f2eacd.png",
     "static/media/hero2.jpeg": "/static/media/hero2.2fcc2f306d263a1ce5b3.jpeg",
     "static/media/resume-3.14.pdf": "/static/media/resume-3.14.8d321777562b0f229011.pdf",
+    "static/media/grafana.png": "/static/media/grafana.b9a01a4e4b4e21dfb013.png",
     "static/media/action-email-notification.jpg": "/static/media/action-email-notification.e5b8d226ca9febd9963b.jpg",
     "static/media/githubAction.png": "/static/media/githubAction.9dfaddbea6a12a1ad4dc.png",
+    "static/media/python.png": "/static/media/python.f7f12e1bf59e577656a2.png",
+    "static/media/docker.png": "/static/media/docker.214251bc4fe444606345.png",
+    "static/media/k8s.png": "/static/media/k8s.b77faac1ae70734f7ec0.png",
+    "static/media/sonarqube.png": "/static/media/sonarqube.fdf8453ddd0077b0dea8.png",
     "index.html": "/index.html",
     "static/media/terraform.svg": "/static/media/terraform.76fc0c987b75018c742e027ad35c5239.svg",
-    "main.c563529a.css.map": "/static/css/main.c563529a.css.map",
-    "main.7f7f2ca3.js.map": "/static/js/main.7f7f2ca3.js.map",
+    "main.637dd9ed.css.map": "/static/css/main.637dd9ed.css.map",
+    "main.72f3f0ae.js.map": "/static/js/main.72f3f0ae.js.map",
     "453.5e192943.chunk.js.map": "/static/js/453.5e192943.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c563529a.css",
-    "static/js/main.7f7f2ca3.js"
+    "static/css/main.637dd9ed.css",
+    "static/js/main.72f3f0ae.js"
   ]
 }
