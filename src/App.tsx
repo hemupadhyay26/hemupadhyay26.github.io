@@ -24,7 +24,7 @@ const navLinks = [
   { label: 'Home', href: '#home' },
   { label: 'My Work', href: '#work' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/hem-upadhyay-4460b31b9/', external: true },
-  { label: 'Download Resume', href: resumeFile, external: true },
+  { label: 'Preview Resume', href: resumeFile, external: true },
 ]
 
 const aboutText = `DevOps Engineer with 2+ years of experience building scalable AWS infrastructure, automating CI/CD pipelines, and improving reliability across production systems. Skilled in Terraform, Docker, GitHub Actions, Bitbucket, Gitea, and core AWS services including EC2, RDS, ECS, ECR, S3, IAM, SES, and CloudWatch. I focus on automation, uptime, secure deployments, and high-performance systems.
@@ -63,12 +63,10 @@ const myWork = [
 const experienceCards = [
   {
     location: 'Remote, Hyderabad',
-    company: 'Strobe CO',
+    company: 'Strobes',
     role: 'Cloud Engineer',
     period: 'Nov 2025 – PRESENT',
     bullets: [
-      'Currently designing end-to-end experiences in travel tech as an independent consultant.',
-      'Recent engagements include B2B SaaS products such as Aana AI and Legal Ladder.',
     ],
   },
   {
@@ -76,7 +74,10 @@ const experienceCards = [
     company: 'Rubico IT',
     role: 'Devops Engineer',
     period: 'Mar 2024 – Oct 2025',
-    bullets: [],
+    bullets: [
+      'Fully automated CI/CD pipelines for deploy on dev/stage/prod environments.',
+      'Monitoring and alerting for the production systems(cloudwatch, grafana, etc.).',
+    ],
   },
 ]
 
@@ -266,7 +267,7 @@ function App() {
               </div>
               <div>
                 <h1 className="text-2xl font-semibold">Hem Upadhyay</h1>
-                <p className="text-sm text-[var(--text-muted)]">Devops Engineer</p>
+                <p className="text-sm text-[var(--text-muted)]">Devops Engineer | AI enthusiasts</p>
                 <p className="mt-1 text-xs text-[var(--text-muted)]">Uttarakhand, India</p>
               </div>
               <span className="inline-flex items-center gap-2 rounded-full bg-[rgba(59,201,109,0.12)] px-3 py-1 text-xs font-semibold text-[var(--text-light)]">
@@ -395,11 +396,6 @@ function App() {
                       <li key={bullet}>{bullet}</li>
                     ))}
                   </ul>
-                )}
-                {exp.bullets.length === 0 && (
-                  <p className="mt-4 text-sm text-[var(--text-muted)]">
-                    Focused on scaling consumer protection experiences and stepping into UX leadership.
-                  </p>
                 )}
               </article>
             ))}
