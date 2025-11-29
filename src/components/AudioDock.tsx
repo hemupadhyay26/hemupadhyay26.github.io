@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { Pause, Play, SkipBack, SkipForward } from 'lucide-react'
-import smoothIntro from '../assets/audio/smooth-intro-72591.mp3'
-import dooronDooron from '../assets/audio/dooronDooron.mp3'
+import audio1 from '../assets/audio/audio1.mp3'
+import audio2 from '../assets/audio/audio2.mp3'
+import audio3 from '../assets/audio/audio3.mp3'
+import audioImg1 from '../assets/audio/audioImg1.jpg'
+import audioImg2 from '../assets/audio/audioImg2.jpg'
+import audioImg3 from '../assets/audio/audioImg3.jpg'
 
 type Track = {
   title: string
@@ -11,19 +15,27 @@ type Track = {
 }
 
 const tracks: Track[] = [
+  
   {
-    title: 'Neon Cove',
-    artist: 'Loftwave',
+    title: 'Audio 1',
+    artist: 'No copyright music',
     artwork:
-      'https://images.unsplash.com/photo-1514525253 161-7a46d19cd819?auto=format&fit=crop&w=400&q=80',
-    src: smoothIntro,
+      audioImg1,
+    src: audio1,
   },
   {
-    title: 'Dooron Dooron',
-    artist: 'Pulkit',
+    title: 'Audio 2',
+    artist: 'No copyright music',
     artwork:
-      'https://images.unsplash.com/photo-1501618669935-18b6ecb13d6d?auto=format&fit=crop&w=400&q=80',
-    src: dooronDooron,
+      audioImg2,
+    src: audio2,
+  },
+  {
+    title: 'Audio 3',
+    artist: 'No copyright music',
+    artwork:
+      audioImg3,
+    src: audio3,
   },
 ]
 
@@ -44,6 +56,26 @@ const AudioDock = ({ isVisible, command, onPlayingChange }: AudioDockProps) => {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const isPlayingRef = useRef(isPlaying)
 
+  const handleNext = () => {
+    const wasPlaying = isPlayingRef.current
+    setCurrentTrackIndex((prev) => (prev + 1) % tracks.length)
+    if (wasPlaying) {
+      setIsPlaying(true)
+    }
+  }
+
+  const handlePrev = () => {
+    const wasPlaying = isPlayingRef.current
+    setCurrentTrackIndex((prev) => (prev - 1 + tracks.length) % tracks.length)
+    if (wasPlaying) {
+      setIsPlaying(true)
+    }
+  }
+
+  const togglePlayback = () => {
+    setIsPlaying((prev) => !prev)
+  }
+
   useEffect(() => {
     audioRef.current = new Audio(tracks[currentTrackIndex].src)
     audioRef.current.volume = 0.35
@@ -52,7 +84,7 @@ const AudioDock = ({ isVisible, command, onPlayingChange }: AudioDockProps) => {
       audioRef.current?.pause()
       audioRef.current?.removeEventListener('ended', handleNext)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [currentTrackIndex])
 
   useEffect(() => {
@@ -74,33 +106,14 @@ const AudioDock = ({ isVisible, command, onPlayingChange }: AudioDockProps) => {
   }, [isPlaying, currentTrackIndex])
 
   useEffect(() => {
-    if (!command) return
-    if (command.action === 'play') {
-      setIsPlaying(true)
-    } else if (command.action === 'pause') {
-      setIsPlaying(false)
-    }
-  }, [command])
-
-  const handleNext = () => {
-    const wasPlaying = isPlayingRef.current
-    setCurrentTrackIndex((prev) => (prev + 1) % tracks.length)
-    if (wasPlaying) {
-      setIsPlaying(true)
-    }
-  }
-
-  const handlePrev = () => {
-    const wasPlaying = isPlayingRef.current
-    setCurrentTrackIndex((prev) => (prev - 1 + tracks.length) % tracks.length)
-    if (wasPlaying) {
-      setIsPlaying(true)
-    }
-  }
-
-  const togglePlayback = () => {
-    setIsPlaying((prev) => !prev)
-  }
+    if (!command) return;
+  
+    queueMicrotask(() => {
+      if (command.action === "play") setIsPlaying(true);
+      if (command.action === "pause") setIsPlaying(false);
+    });
+  }, [command]);
+  
 
   const track = tracks[currentTrackIndex]
 

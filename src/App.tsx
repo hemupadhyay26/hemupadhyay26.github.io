@@ -4,7 +4,6 @@ import {
   Check,
   Copy,
   Download,
-  ExternalLink,
   Linkedin,
   MapPin,
   Menu,
@@ -23,9 +22,9 @@ import './App.css'
 
 const navLinks = [
   { label: 'Home', href: '#home' },
-  { label: 'Case Studies', href: '#work' },
+  { label: 'My Work', href: '#work' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/hem-upadhyay-4460b31b9/', external: true },
-  { label: 'Download Resume', href: resumeFile, download: true },
+  { label: 'Download Resume', href: resumeFile, external: true },
 ]
 
 const aboutText = `DevOps Engineer with 2+ years of experience building scalable AWS infrastructure, automating CI/CD pipelines, and improving reliability across production systems. Skilled in Terraform, Docker, GitHub Actions, Bitbucket, Gitea, and core AWS services including EC2, RDS, ECS, ECR, S3, IAM, SES, and CloudWatch. I focus on automation, uptime, secure deployments, and high-performance systems.
@@ -58,7 +57,7 @@ const myWork = [
     description: 'A template for creating and sending notifications to Slack channels, enhancing team communication during CI/CD processes.',
     cover: 'slack notification template',
     image: slackNotificationTemplate,
-  },  
+  },
 ]
 
 const experienceCards = [
@@ -114,6 +113,7 @@ const education = [
 
 const floatingTags = [
   { label: 'DevOps', top: '8%', left: '10%', delay: '0s', duration: '8.4s' },
+  { label: 'GIT', top: '8%', left: '80%', delay: '0.3s', duration: '7.2s' },
   { label: 'GITHUB CI/CD', top: '5%', left: '60%', delay: '0.3s', duration: '7.2s' },
   { label: 'Gitops', top: '28%', left: '15%', delay: '0.8s', duration: '6.7s' },
   { label: 'AWS', top: '25%', left: '75%', delay: '1.1s', duration: '7.9s' },
@@ -133,8 +133,7 @@ const floatingTags = [
   { label: 'Linux', top: '84%', left: '73%', delay: '0.9s', duration: '6.5s' },
   { label: 'Monitoring', top: '38%', left: '23%', delay: '1.5s', duration: '8.5s' },
 
-  { label: 'CloudFormation', top: '10%', left: '38%', delay: '0.4s', duration: '7.8s' },
-  { label: 'Bitbucket', top: '62%', left: '42%', delay: '1s', duration: '6.6s' },
+  { label: 'GITHUB', top: '62%', left: '42%', delay: '1s', duration: '6.6s' },
   { label: 'LangGraph', top: '52%', left: '78%', delay: '1.3s', duration: '8.8s' },
   { label: 'Pydantic', top: '72%', left: '52%', delay: '0.2s', duration: '7.1s' },
 
@@ -188,7 +187,7 @@ function App() {
     <div className="min-h-screen bg-[var(--bg-dark)] text-[var(--text-light)]">
       <header className="border-b border-[var(--border-light)] bg-[var(--surface)]">
         <div className="mx-auto flex max-w-5xl items-center gap-4 px-6 py-5">
-          <span className="text-lg font-semibold">Hem Upadhyay</span>
+          <span className="text-lg font-semibold cursor-pointer">Hem Upadhyay</span>
           <nav className="hidden flex-1 items-center justify-center gap-8 text-sm font-medium text-[var(--text-muted)] md:flex">
             {navLinks.map((link) => (
               <a
@@ -196,7 +195,6 @@ function App() {
                 href={link.href}
                 target={link.external ? '_blank' : undefined}
                 rel={link.external ? 'noreferrer' : undefined}
-                download={link.download ? '' : undefined}
                 className="transition hover:text-[var(--text-light)]"
               >
                 {link.label}
@@ -208,8 +206,8 @@ function App() {
               type="button"
               onClick={toggleAudioDockVisibility}
               className={`hidden items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition md:inline-flex ${isAudioPlaying
-                  ? 'border-[var(--accent)] text-[var(--accent)]'
-                  : 'border-[var(--border-light)] text-[var(--text-light)] hover:border-[var(--accent)] hover:text-[var(--accent)]'
+                ? 'border-[var(--accent)] text-[var(--accent)]'
+                : 'border-[var(--border-light)] text-[var(--text-light)] hover:border-[var(--accent)] hover:text-[var(--accent)]'
                 }`}
               aria-pressed={isAudioDockVisible}
               title="Play song"
@@ -241,7 +239,6 @@ function App() {
                 href={link.href}
                 target={link.external ? '_blank' : undefined}
                 rel={link.external ? 'noreferrer' : undefined}
-                download={link.download ? '' : undefined}
                 className="rounded-md px-2 py-2 text-[var(--text-muted)] transition hover:bg-[var(--surface-elevated)] hover:text-[var(--text-light)]"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -480,18 +477,15 @@ function App() {
       <footer className="border-t border-[var(--border-light)] bg-[var(--surface)]/70">
         <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-10 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="text-lg font-semibold text-[var(--text-light)]">Neeraj Sagar</p>
-            <p className="text-sm text-[var(--text-muted)]">
-              UX Manager crafting high-trust product experiences across fintech & SaaS.
-            </p>
+            <p className="text-lg font-semibold text-[var(--text-light)]">© Hem Upadhyay</p>
           </div>
           <div className="flex flex-wrap items-center gap-4 text-sm text-[var(--text-muted)]">
             <button
               type="button"
               onClick={() => handleEmailCopy('footer')}
               className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 transition ${copiedSource === 'footer'
-                  ? 'border-[var(--accent)] text-[var(--accent)]'
-                  : 'border-[var(--border-light)] text-[var(--text-light)] hover:border-[var(--accent)] hover:text-[var(--accent)]'
+                ? 'border-[var(--accent)] text-[var(--accent)]'
+                : 'border-[var(--border-light)] text-[var(--text-light)] hover:border-[var(--accent)] hover:text-[var(--accent)]'
                 }`}
             >
               {copiedSource === 'footer' ? (
