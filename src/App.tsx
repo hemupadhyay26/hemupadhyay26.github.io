@@ -12,7 +12,7 @@ import {
   X,
 } from 'lucide-react'
 import AudioDock from './components/AudioDock'
-import heroPortrait from './assets/hero.jpg'
+import heroPortrait from './assets/hero.webp'
 import resumeFile from './assets/hem_upadhyay_resume.pdf'
 import infuseAi from './assets/infuseAI.png'
 import interviewAI from './assets/interviewAI.png'
