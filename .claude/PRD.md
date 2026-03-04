@@ -8,7 +8,7 @@ This is a personal portfolio website for Hem Upadhyay, a DevOps Engineer and AI 
 
 The site is built as a fully static React + TypeScript + Vite application deployed to GitHub Pages. It requires no backend, no database, and no environment variables. All content is managed directly in the source code.
 
-**Status: MVP shipped** — the base portfolio is live at `https://hemupadhyay26.github.io/`. The next phase is evolving it from a standard portfolio into a creative, interactive experience that makes skills tangible, not just listed.
+**Status: Phase 0 ✅ shipped · Phase 1 ✅ complete** — the base portfolio is live at `https://hemupadhyay26.github.io/`. Codebase is refactored to standards, bento grid, terminal section, scroll animations, and CI/CD are all done. Next phases TBD.
 
 **End goal:** A portfolio that doesn't just tell people what Hem knows — it *shows* them through the experience of using the site itself.
 
@@ -154,7 +154,7 @@ All anchor navigation (Home, My Work) smoothly scrolls with easing. Section head
 - ❌ Light/dark mode toggle
 - ❌ Certifications section (scaffolded but commented out)
 - ❌ GitHub activity feed or live stats
-- ❌ Project links (GitHub repo, live demo URLs)
+- ✅ Project links (GitHub repo URLs — all 4 projects have `url` field wired)
 - ❌ Analytics integration
 - ❌ CMS for content management
 - ❌ i18n / localization
@@ -330,86 +330,49 @@ The portfolio accurately represents Hem's experience, loads fast, looks polished
 ## 11. Implementation Phases
 
 ### Phase 0 — MVP ✅ SHIPPED
-The base portfolio is live. All core sections render correctly, resume downloads, email copy works, audio dock plays, responsive layout works.
+
+**What was built:**
+- ✅ Hero section — portrait, name, role, location, availability badge
+- ✅ Email copy-to-clipboard with "Copied!" tooltip
+- ✅ Resume download (PDF)
+- ✅ LinkedIn + GitHub links
+- ✅ Projects section with screenshots and descriptions
+- ✅ Experience section — company, role, period, bullet points
+- ✅ Education section
+- ✅ Skills & Tools cloud — 29 animated floating tags
+- ✅ Footer with email + LinkedIn
+- ✅ Responsive layout — mobile hamburger nav, desktop inline nav
+- ✅ Floating audio dock — 3 no-copyright tracks, spinning artwork, play/pause/skip
+- ✅ Dark theme with design tokens
 
 ---
 
-### Phase 1 — Refactor to code standards *(next up)*
-**Goal:** Bring the codebase up to documented best practices before adding new features.
+### Phase 1 — Refactor + Features ✅ COMPLETE
 
-- [ ] Define all TypeScript types in `src/types/index.ts`
-- [ ] Move all content data to `src/data/index.ts`
-- [ ] Extract `ProjectCard` component
-- [ ] Extract `ExperienceCard` component
-- [ ] Extract `CopyEmailButton` component
-- [ ] Extract `NavLink` component
-- [ ] Extract `SkillCloud` component
-- [ ] Reduce `App.tsx` to under 200 lines
-- [ ] Fix asset naming (camelCase, no typos, remove unused files)
-- [ ] Remove duplicate `AudioCommand` type definition
-
-**Validation:** `npm run lint && npm run build` — zero errors. `wc -l src/**/*.tsx` — no file over 200 lines.
-
----
-
-### Phase 2 — Content accuracy
-**Goal:** Keep the live site content current and complete.
-
-- [ ] Update experience bullets for current role (Strobes)
-- [ ] Add GitHub / live demo links to each project card
-- [ ] Replace placeholder audio track titles with real names
-- [ ] Verify resume PDF is current
-- [ ] Add SEO `<meta>` description and Open Graph tags
+**What was built:**
+- ✅ All TypeScript types extracted to `src/types/index.ts`
+- ✅ All content data moved to `src/data/index.ts` (typed arrays — never in JSX)
+- ✅ `WorkBento` component — bento grid replaced card grid (4-col CSS grid, dense fill, shape system)
+- ✅ `ExperienceCard`, `CopyEmailButton`, `NavLink`, `SkillCloud`, `HeroSection`, `SiteHeader`, `SiteFooter`, `SocialSidebar`, `ProjectCard` all extracted
+- ✅ Asset naming fixed — camelCase, no typos, unused files removed
+- ✅ Duplicate `AudioCommand` type removed
+- ✅ Framer Motion scroll animations — `whileInView` on all sections (`fadeLeft`, `fadeIn`, `fadeUp`, `staggerContainer`)
+- ✅ Interactive terminal page at `#terminal` — hash routing, `TerminalPage.tsx`, commands: `whoami`, `skills`, `experience`, `education`, `work`, `contact`, `about`, `ls`, `pwd`, `help`, `clear`, Tab autocomplete, arrow-key history
+- ✅ GitHub Actions CI/CD — lint + type-check + build on every push/PR; auto-deploy to GitHub Pages on merge to `main`
+- ✅ 5 projects in bento grid including Tantrumpy (5th project added)
+- ✅ `npm run lint && npm run build` — zero errors
 
 ---
 
-### Phase 3 — Creative interactions *(end goal)*
-**Goal:** Transform the portfolio from a static page into a showcase of craft. Each feature in this phase is a deliberate demonstration of technical personality.
+### Phase 2 — TBD
 
-#### 3a. Page load boot sequence
-A terminal-style splash (`initializing portfolio... ready.`) that fades in under 1.5 seconds before revealing the page. Sets tone immediately. Pure CSS + React, no dependencies.
-
-#### 3b. Scroll-triggered section animations
-Each section fades + slides up into view using `IntersectionObserver`. No animation library needed — native browser API + CSS transitions. Sections stay visible once they've animated in.
-
-#### 3c. Stats bar (count-up on scroll)
-A horizontal metrics strip between the hero and projects — years of experience, pipelines automated, AWS services, AI agents built. Numbers count up from 0 when scrolled into view. Pure React + `IntersectionObserver`.
-
-#### 3d. Project cards — flip on hover
-Cards flip to reveal tech stack pills + GitHub link + live demo link on the back face. CSS `transform: rotateY()` with `perspective`. No additional libraries.
-
-#### 3e. Interactive terminal section
-A fully interactive CLI widget in the page. Visitors type commands to explore Hem's profile.
-
-Supported commands:
-```
-whoami        → name, role, location
-ls projects/  → list all projects
-cat <project> → show description + stack + links
-skills        → full skills list
-contact       → email + LinkedIn
-clear         → clear terminal output
-help          → list all commands
-```
-
-Built as a single `Terminal.tsx` component with a `commands` map in `src/data/index.ts`. Demonstrates Linux/DevOps fluency through the UI itself.
-
-#### 3f. Skills cloud — clickable filter
-Clicking a tag in the skills cloud filters the projects section to show only projects that used that skill. Skills with no linked projects still display but don't filter. Resets on second click or via an "All" button.
-
-#### 3g. CI/CD pipeline experience visualization
-The experience section renders as a horizontal pipeline diagram (on desktop) with each job as a stage, key tools as steps within each stage, and a flowing connection line between stages. Mobile falls back to the current card layout.
+*To be defined.*
 
 ---
 
-### Phase 4 — Discovery & reach
-**Goal:** Extend the portfolio's value beyond the single page.
+### Phase 3 — TBD
 
-- [ ] Certifications section (already scaffolded in code, commented out)
-- [ ] Blog / writing section (markdown files → static pages)
-- [ ] Contact form (Formspree or `mailto:` link)
-- [ ] Privacy-respecting analytics (Plausible)
-- [ ] GitHub contribution graph or live stats via GitHub API
+*To be defined.*
 
 ---
 
@@ -431,7 +394,7 @@ The experience section renders as a horizontal pipeline diagram (on desktop) wit
 | Asset names diverge from convention as new content is added | Naming rules documented in `.claude/reference/deployment-best-practices.md`; enforce on every PR |
 | Color tokens get bypassed with hardcoded values | ESLint rule or code review checklist; documented in best practices |
 | Resume PDF becomes stale | Keep the file path constant (`src/assets/resume.pdf` after rename); just drop a new file in |
-| `gh-pages` branch gets into a broken state | `npm run deploy` force-pushes clean `dist/` each time — run it to fix any state issues |
+| `gh-pages` branch gets into a broken state | Mitigated — CI/CD now deploys via `actions/deploy-pages` (not the `gh-pages` branch). `npm run deploy` still available as a local escape hatch. |
 
 ---
 

@@ -4,6 +4,7 @@ import projectInfuseAi from '../assets/projectInfuseAi.png'
 import projectInterviewAi from '../assets/projectInterviewAi.png'
 import projectSshCredManager from '../assets/projectSshCredManager.png'
 import projectSlackNotification from '../assets/projectSlackNotification.png'
+import projectTantrumpy from '../assets/projectTantrumpy.png'
 import audio1 from '../assets/audio/audio1.mp3'
 import audio2 from '../assets/audio/audio2.mp3'
 import audio3 from '../assets/audio/audio3.mp3'
@@ -42,20 +43,21 @@ export const myWork: Project[] = [
     shape: ProjectShape.MainSquare, // ← featured highlight, only ONE allowed, always large
   },
   {
-    title: 'Interview AI',
-    description: 'A AI agent that helps you prepare for your interviews based on the job description.',
-    cover: 'interview ai',
-    image: projectInterviewAi,
-    url: 'https://github.com/hemupadhyay26/interview-ai-agent-python', // GitHub: https://github.com/hemupadhyay26/<repo-name>
-    shape: ProjectShape.Horizontal,
-    size: ProjectSize.Small,
-  },
-  {
     title: 'SSH Credential Manager',
     description: 'A tool that helps you manage your SSH credentials.',
     cover: 'ssh credential manager',
     image: projectSshCredManager,
     url: 'https://github.com/hemupadhyay26/ssh-cred-manager-nodejs',
+    size: ProjectSize.Small,
+    shape: ProjectShape.Vertical,
+  },
+  {
+    title: 'Interview AI',
+    description: 'A AI agent that helps you prepare for your interviews based on the job description.',
+    cover: 'interview ai',
+    image: projectInterviewAi,
+    url: 'https://github.com/hemupadhyay26/interview-ai-agent-python', // GitHub: https://github.com/hemupadhyay26/<repo-name>
+    shape: ProjectShape.Square,
     size: ProjectSize.Small,
   },
   {
@@ -64,9 +66,18 @@ export const myWork: Project[] = [
     cover: 'slack notification template',
     image: projectSlackNotification,
     url: 'https://github.com/hemupadhyay26/slack-github-action-template',
-    shape: ProjectShape.Square,
+    shape: ProjectShape.Horizontal,
     size: ProjectSize.Small,
   },
+  {
+    title: 'Tantrumpy',
+    description: 'A Python package that captures exit signals and prints a nice message when the program terminates.',
+    cover: 'tantrumpy',
+    image: projectTantrumpy,
+    url: 'https://github.com/hemupadhyay26/tantrumpy',
+    shape: ProjectShape.Square,
+    size: ProjectSize.Small,
+  }
 ]
 
 export const experienceCards: Experience[] = [
