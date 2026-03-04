@@ -102,3 +102,12 @@ export type SocialLink = {
   Icon: ComponentType<{ size?: number; className?: string; strokeWidth?: number }>
   copyEmail?: boolean
 }
+
+export type TerminalCommand = {
+  /** The exact string the user types (lowercase, no spaces) */
+  command: string
+  /** One-line description shown in `help` output */
+  description: string
+  /** Response lines. Use an array for multi-line output. */
+  output: string | string[]
+}

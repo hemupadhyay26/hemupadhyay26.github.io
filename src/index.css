@@ -21,6 +21,8 @@
   --audio-btn-bg: #ffffff;
   --skeleton-base: #0d1120;
   --skeleton-highlight: #1c2540;
+  --terminal-prompt: #4cc2ff;
+  --terminal-bg: #050912;
 }
 
 body {

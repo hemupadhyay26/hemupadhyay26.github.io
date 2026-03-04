@@ -11,7 +11,7 @@ import track1Cover from '../assets/audio/track1Cover.jpg'
 import track2Cover from '../assets/audio/track2Cover.jpg'
 import track3Cover from '../assets/audio/track3Cover.jpg'
 import { Github, Linkedin, Mail, MessageSquare } from 'lucide-react'
-import type { NavLink, Project, Experience, Education, FloatingTag, Track, SocialLink } from '../types'
+import type { NavLink, Project, Experience, Education, FloatingTag, Track, SocialLink, TerminalCommand } from '../types'
 import { ProjectShape, ProjectSize } from '../types'
 
 export { heroPortrait, resumeFile }
@@ -19,9 +19,12 @@ export { heroPortrait, resumeFile }
 export const navLinks: NavLink[] = [
   { label: 'Home', href: '#home' },
   { label: 'My Work', href: '#work' },
+  { label: 'Terminal', href: '#terminal' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/hem-upadhyay-4460b31b9/', external: true },
   { label: 'Preview Resume', href: resumeFile, external: true },
 ]
+
+export const isAvailableForWork: boolean = false
 
 export const aboutText = `DevOps Engineer with 2+ years of experience building scalable AWS infrastructure, automating CI/CD pipelines, and improving reliability across production systems. Skilled in Terraform, Docker, GitHub Actions, Bitbucket, Gitea, and core AWS services including EC2, RDS, ECS, ECR, S3, IAM, SES, and CloudWatch. I focus on automation, uptime, secure deployments, and high-performance systems.
 
@@ -35,6 +38,7 @@ export const myWork: Project[] = [
     description: 'A RAG based AI agent that help you get answers based on your documents.',
     cover: 'infuse ai',
     image: projectInfuseAi,
+    url: 'https://github.com/hemupadhyay26/infuse-ai',
     shape: ProjectShape.MainSquare, // ← featured highlight, only ONE allowed, always large
   },
   {
@@ -42,6 +46,7 @@ export const myWork: Project[] = [
     description: 'A AI agent that helps you prepare for your interviews based on the job description.',
     cover: 'interview ai',
     image: projectInterviewAi,
+    url: 'https://github.com/hemupadhyay26/interview-ai-agent-python', // GitHub: https://github.com/hemupadhyay26/<repo-name>
     shape: ProjectShape.Horizontal,
     size: ProjectSize.Small,
   },
@@ -50,7 +55,7 @@ export const myWork: Project[] = [
     description: 'A tool that helps you manage your SSH credentials.',
     cover: 'ssh credential manager',
     image: projectSshCredManager,
-    shape: ProjectShape.Square,
+    url: 'https://github.com/hemupadhyay26/ssh-cred-manager-nodejs',
     size: ProjectSize.Small,
   },
   {
@@ -58,6 +63,7 @@ export const myWork: Project[] = [
     description: 'A template for creating and sending notifications to Slack channels, enhancing team communication during CI/CD processes.',
     cover: 'slack notification template',
     image: projectSlackNotification,
+    url: 'https://github.com/hemupadhyay26/slack-github-action-template',
     shape: ProjectShape.Square,
     size: ProjectSize.Small,
   },
@@ -175,5 +181,118 @@ export const tracks: Track[] = [
     artist: 'No copyright music',
     artwork: track3Cover,
     src: audio3,
+  },
+]
+
+export const terminalCommands: TerminalCommand[] = [
+  {
+    command: 'whoami',
+    description: 'Who is Hem Upadhyay',
+    output: [
+      'Hem Upadhyay — Cloud & DevOps Engineer',
+      '',
+      'DevOps Engineer with 2+ years of experience building scalable AWS',
+      'infrastructure, automating CI/CD pipelines, and improving reliability',
+      'across production systems.',
+      '',
+      'Also works in AI engineering: RAG models, AI agents (LangGraph),',
+      'and data workflows with Pydantic.',
+    ],
+  },
+  {
+    command: 'skills',
+    description: 'Technical skills and tools',
+    output: [
+      'Cloud & Infrastructure:',
+      '  AWS (EC2, ECS, ECR, RDS, S3, IAM, SES, CloudWatch)',
+      '  Terraform · Docker · Kubernetes',
+      '',
+      'CI/CD & GitOps:',
+      '  GitHub Actions · Bitbucket · Gitea · GitHub CI/CD',
+      '',
+      'Monitoring:',
+      '  CloudWatch · Grafana',
+      '',
+      'Languages & AI:',
+      '  Python · LangGraph · Pydantic · RAG Models · AI Agents',
+    ],
+  },
+  {
+    command: 'experience',
+    description: 'Work history and roles',
+    output: [
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+      'Cloud Engineer — Strobes',
+      'Nov 2025 – PRESENT · Remote, Hyderabad',
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+      'DevOps Engineer — Rubico IT',
+      'Mar 2024 – Oct 2025 · Uttarakhand, India',
+      '  • Fully automated CI/CD pipelines (dev/stage/prod)',
+      '  • Monitoring and alerting (CloudWatch, Grafana)',
+    ],
+  },
+  {
+    command: 'education',
+    description: 'Academic background',
+    output: [
+      'B.Tech in Computer Science & Engineering',
+      'Graphic Era University, Bhimtal, Uttarakhand',
+      '2020 – 2024',
+    ],
+  },
+  {
+    command: 'work',
+    description: 'Projects and portfolio',
+    output: [
+      'Infuse AI      — RAG-based AI agent for document Q&A',
+      'Interview AI   — AI interview prep based on job descriptions',
+      'SSH Cred Mgr   — SSH credential management tool',
+      'Slack Notifs   — CI/CD Slack notification templates',
+      '',
+      'View all: https://github.com/hemupadhyay26',
+    ],
+  },
+  {
+    command: 'contact',
+    description: 'Contact information',
+    output: [
+      'Email:    hemupadhyay234@gmail.com',
+      'GitHub:   https://github.com/hemupadhyay26',
+      'LinkedIn: https://www.linkedin.com/in/hem-upadhyay-4460b31b9/',
+      'Dev.to:   https://dev.to/hem_upadhyay_ad9428dc9ddc',
+    ],
+  },
+  {
+    command: 'about',
+    description: 'More about me',
+    output: [
+      'I focus on automation, uptime, secure deployments, and high-performance',
+      'systems. I blend DevOps and AI to design intelligent, automated solutions',
+      'that improve efficiency and reduce operational complexity.',
+      '',
+      "When I'm not building infrastructure, I'm exploring AI agents and LLMs.",
+    ],
+  },
+
+  // ── Classic bash easter eggs ─────────────────────────────────────────────
+  {
+    command: 'ls',
+    description: 'List directory contents',
+    output: [
+      'total 42',
+      'drwxr-xr-x  hem  staff   about/',
+      'drwxr-xr-x  hem  staff   experience/',
+      'drwxr-xr-x  hem  staff   skills/',
+      'drwxr-xr-x  hem  staff   projects/',
+      'drwxr-xr-x  hem  staff   education/',
+      '-rw-r--r--  hem  staff   contact.txt',
+      '-rw-r--r--  hem  staff   resume.pdf',
+      '-rwxr-xr-x  hem  staff   deploy.sh*',
+    ],
+  },
+  {
+    command: 'pwd',
+    description: 'Print working directory',
+    output: ['/home/hem/portfolio'],
   },
 ]

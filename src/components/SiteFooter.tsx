@@ -17,10 +17,6 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
       <div className="mx-auto max-w-5xl px-6 py-10">
         {/* Top row */}
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-lg font-semibold text-[var(--text-light)]">Hem Upadhyay</p>
-            <p className="mt-0.5 text-sm text-[var(--text-muted)]">DevOps Engineer · AI Engineer</p>
-          </div>
           <div className="flex items-center gap-3">
             {socialLinks.map((link) => (
               <SocialIcon key={link.id} link={link} />

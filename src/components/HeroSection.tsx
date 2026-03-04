@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Check, Download, Linkedin } from 'lucide-react'
 import Skeleton from 'react-loading-skeleton'
-import { heroPortrait, resumeFile, emailAddress, aboutText } from '../data'
+import { heroPortrait, resumeFile, emailAddress, aboutText, isAvailableForWork } from '../data'
 import { CopyEmailButton } from './CopyEmailButton'
 
 type HeroSectionProps = {
@@ -57,9 +57,20 @@ export function HeroSection({ copiedSource, onEmailCopy }: HeroSectionProps) {
             <p className="text-sm text-[var(--text-muted)]">Devops Engineer | AI enthusiasts</p>
             <p className="mt-1 text-xs text-[var(--text-muted)]">Uttarakhand, India</p>
           </div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-[var(--status-green-soft)] px-3 py-1 text-xs font-semibold text-[var(--text-light)]">
-            <Check className="h-3 w-3 text-[var(--status-green)]" />
-            Available for work
+          {/* Availability badge — driven by isAvailableForWork in src/data/index.ts */}
+          <span
+            className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold text-[var(--text-light)] transition-colors duration-300 ${
+              isAvailableForWork
+                ? 'bg-[var(--status-green-soft)]'
+                : 'bg-[var(--accent-soft)]'
+            }`}
+          >
+            <Check
+              className={`h-3 w-3 transition-colors duration-300 ${
+                isAvailableForWork ? 'text-[var(--status-green)]' : 'text-[var(--accent)]'
+              }`}
+            />
+            {isAvailableForWork ? 'Available for work' : 'Currently employed'}
           </span>
           <a
             href={resumeFile}
