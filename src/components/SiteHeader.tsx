@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, PauseCircle, PlayCircle, X } from 'lucide-react'
 import { navLinks } from '../data'
 import { NavLink } from './NavLink'
@@ -59,20 +59,29 @@ export function SiteHeader({
         </div>
       </motion.header>
 
-      {isMenuOpen && (
-        <div className="border-b border-[var(--border-light)] bg-[var(--surface)] px-6 py-4 lg:hidden">
-          <div className="mx-auto flex max-w-5xl flex-col gap-4 text-sm">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.label}
-                link={link}
-                className="rounded-md px-2 py-2 text-[var(--text-muted)] transition hover:bg-[var(--surface-elevated)] hover:text-[var(--text-light)]"
-                onClick={onMenuToggle}
-              />
-            ))}
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="border-b border-[var(--border-light)] bg-[var(--surface)] px-6 py-4 lg:hidden"
+          >
+            <div className="mx-auto flex max-w-5xl flex-col gap-4 text-sm">
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.label}
+                  link={link}
+                  className="rounded-md px-2 py-2 text-[var(--text-muted)] transition hover:bg-[var(--surface-elevated)] hover:text-[var(--text-light)]"
+                  onClick={onMenuToggle}
+                />
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }

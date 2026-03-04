@@ -1,16 +1,16 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
 import type { AudioCommand } from './types'
 import { myWork, experienceCards, education, floatingTags, emailAddress } from './data'
-import { fadeUp, fadeLeft, fadeIn, staggerContainer } from './lib/animations'
+import { fadeLeft, fadeIn, staggerContainer } from './lib/animations'
 import AudioDock from './components/AudioDock'
 import { SiteHeader } from './components/SiteHeader'
 import { HeroSection } from './components/HeroSection'
-import { ProjectCard } from './components/ProjectCard'
 import { ExperienceCard } from './components/ExperienceCard'
 import { EducationCard } from './components/EducationCard'
 import { SkillCloud } from './components/SkillCloud'
+import { WorkBento } from './components/WorkBento'
+import { ArrowUpRight } from 'lucide-react'
 import { SocialSidebar } from './components/SocialSidebar'
 import { SiteFooter } from './components/SiteFooter'
 import './App.css'
@@ -73,23 +73,11 @@ function App() {
               View all <ArrowUpRight className="h-4 w-4" />
             </a>
           </motion.div>
-          <motion.div
-            className="grid gap-6 md:grid-cols-3"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.15 }}
-          >
-            {myWork.map((project) => (
-              <motion.div key={project.title} variants={fadeUp}>
-                <ProjectCard {...project} />
-              </motion.div>
-            ))}
-          </motion.div>
+          <WorkBento projects={myWork} />
         </section>
 
         {/* Experience section */}
-        <section id="experience" className="space-y-8">
+        <section id="experience" className="space-y-6">
           <motion.h3
             className="text-lg font-semibold text-[var(--text-light)]"
             variants={fadeIn}
@@ -99,23 +87,44 @@ function App() {
           >
             Experience
           </motion.h3>
-          <motion.div
-            className="space-y-6"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.15 }}
-          >
-            {experienceCards.map((exp) => (
-              <motion.div key={`${exp.company}-${exp.period}`} variants={fadeLeft}>
-                <ExperienceCard {...exp} />
-              </motion.div>
-            ))}
-          </motion.div>
+
+          {/* Timeline track */}
+          <div className="relative">
+            {/* Vertical line — fades out toward the bottom */}
+            <div className="absolute left-[7px] top-0 h-full w-px bg-gradient-to-b from-[var(--accent)] via-[var(--border-light)] to-transparent" />
+
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.15 }}
+            >
+              {experienceCards.map((exp) => {
+                const isPresent = exp.period.toUpperCase().includes('PRESENT')
+                return (
+                  <motion.div
+                    key={`${exp.company}-${exp.period}`}
+                    variants={fadeLeft}
+                    className="relative pl-8 pb-10 last:pb-0"
+                  >
+                    {/* Timeline dot — filled + glowing for current role */}
+                    <div
+                      className={`absolute left-0 top-1.5 z-10 h-[15px] w-[15px] rounded-full border-2 transition-shadow ${
+                        isPresent
+                          ? 'border-[var(--accent)] bg-[var(--accent)] shadow-[0_0_0_4px_var(--accent-soft)]'
+                          : 'border-[var(--border-light)] bg-[var(--surface)]'
+                      }`}
+                    />
+                    <ExperienceCard {...exp} />
+                  </motion.div>
+                )
+              })}
+            </motion.div>
+          </div>
         </section>
 
         {/* Education section */}
-        <section className="space-y-8">
+        <section className="space-y-6">
           <motion.h3
             className="text-lg font-semibold text-[var(--text-light)]"
             variants={fadeIn}
@@ -125,19 +134,31 @@ function App() {
           >
             Education
           </motion.h3>
-          <motion.div
-            className="space-y-4"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.15 }}
-          >
-            {education.map((item) => (
-              <motion.div key={item.title} variants={fadeLeft}>
-                <EducationCard {...item} />
-              </motion.div>
-            ))}
-          </motion.div>
+
+          {/* Timeline track */}
+          <div className="relative">
+            {/* Vertical line */}
+            <div className="absolute left-[7px] top-0 h-full w-px bg-gradient-to-b from-[var(--highlight-1)] to-transparent" />
+
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.15 }}
+            >
+              {education.map((item) => (
+                <motion.div
+                  key={item.title}
+                  variants={fadeLeft}
+                  className="relative pl-8 pb-0"
+                >
+                  {/* Timeline dot */}
+                  <div className="absolute left-0 top-1.5 z-10 h-[15px] w-[15px] rounded-full border-2 border-[var(--highlight-1)] bg-[var(--surface)]" />
+                  <EducationCard {...item} />
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </section>
 
         <SkillCloud tags={floatingTags} />

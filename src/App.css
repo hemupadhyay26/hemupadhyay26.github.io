@@ -1,5 +1,36 @@
 @import "tailwindcss";
 
+@keyframes marqueeLeft {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+@keyframes marqueeRight {
+  from { transform: translate3d(-50%, 0, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}
+
+/* ── Bento grid ────────────────────────────────────────── */
+/*
+ * Auto-placement with dense packing fills every cell.
+ * Each card sets its own col/row span via inline style.
+ * Grid cells are square (col-width ≈ row-height) so circles
+ * and squares look correct at 1×1.
+ */
+.bento-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 180px;
+  grid-auto-flow: dense;
+}
+
+@media (min-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 220px; /* ~square cells on most viewports */
+  }
+}
+
 @keyframes floatTag {
   0% {
     transform: translate3d(0, 0, 0) rotate(0deg);
@@ -16,16 +47,4 @@
   100% {
     transform: translate3d(0, 0, 0) rotate(0deg);
   }
-}
-
-.floating-chip {
-  animation-name: floatTag;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.35);
-  will-change: transform;
-}
-
-.skill-cloud {
-  position: relative;
 }

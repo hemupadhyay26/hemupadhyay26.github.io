@@ -23,7 +23,7 @@ export function CopyEmailButton({ source, email, copiedSource, onCopy, className
           {email}
         </button>
         <span
-          className={`absolute -top-8 left-1/2 -translate-x-1/2 rounded-full bg-[var(--accent)] px-3 py-1 text-[10px] font-semibold text-[var(--bg-dark)] shadow-[0_12px_30px_rgba(76,194,255,0.3)] transition-all duration-200 ${isCopied ? 'opacity-100 -translate-y-1' : 'pointer-events-none opacity-0'}`}
+          className={`absolute -top-8 left-1/2 -translate-x-1/2 rounded-full bg-[var(--accent)] px-3 py-1 text-[10px] font-semibold text-[var(--bg-dark)] shadow-[0_12px_30px_rgba(76,194,255,0.3)] transition-[opacity,transform] duration-200 ease-out ${isCopied ? 'opacity-100 -translate-y-1' : 'pointer-events-none opacity-0'}`}
         >
           <span className="inline-flex items-center gap-1">
             <Check className="h-3 w-3" />

@@ -12,6 +12,7 @@ import track2Cover from '../assets/audio/track2Cover.jpg'
 import track3Cover from '../assets/audio/track3Cover.jpg'
 import { Github, Linkedin, Mail, MessageSquare } from 'lucide-react'
 import type { NavLink, Project, Experience, Education, FloatingTag, Track, SocialLink } from '../types'
+import { ProjectShape, ProjectSize } from '../types'
 
 export { heroPortrait, resumeFile }
 
@@ -34,24 +35,31 @@ export const myWork: Project[] = [
     description: 'A RAG based AI agent that help you get answers based on your documents.',
     cover: 'infuse ai',
     image: projectInfuseAi,
+    shape: ProjectShape.MainSquare, // ← featured highlight, only ONE allowed, always large
   },
   {
     title: 'Interview AI',
     description: 'A AI agent that helps you prepare for your interviews based on the job description.',
     cover: 'interview ai',
     image: projectInterviewAi,
+    shape: ProjectShape.Horizontal,
+    size: ProjectSize.Small,
   },
   {
     title: 'SSH Credential Manager',
     description: 'A tool that helps you manage your SSH credentials.',
     cover: 'ssh credential manager',
     image: projectSshCredManager,
+    shape: ProjectShape.Square,
+    size: ProjectSize.Small,
   },
   {
     title: 'Slack Notification Template',
     description: 'A template for creating and sending notifications to Slack channels, enhancing team communication during CI/CD processes.',
     cover: 'slack notification template',
     image: projectSlackNotification,
+    shape: ProjectShape.Square,
+    size: ProjectSize.Small,
   },
 ]
 

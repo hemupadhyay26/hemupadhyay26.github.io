@@ -3,20 +3,23 @@ import type { Experience } from '../types'
 
 export function ExperienceCard({ company, role, location, period, bullets }: Experience) {
   return (
-    <article className="rounded-2xl border-l-2 border-[var(--border-light)] bg-transparent p-6">
-      <div className="flex flex-col gap-2 pb-4 text-sm text-[var(--text-muted)] md:flex-row md:items-start md:justify-between">
+    <article className="space-y-3">
+      <div className="flex flex-col gap-1 md:flex-row md:items-start md:justify-between">
         <div>
-          <p className="flex items-center gap-1 text-xs uppercase tracking-[0.3em]">
-            <MapPin className="h-4 w-4" />
+          <p className="flex items-center gap-1 text-xs uppercase tracking-[0.28em] text-[var(--text-muted)]">
+            <MapPin className="h-3 w-3" />
             {location}
           </p>
-          <p className="mt-2 text-xl font-semibold text-[var(--text-light)]">{company}</p>
-          <p className="text-sm">{role}</p>
+          <p className="mt-1 text-lg font-semibold text-[var(--text-light)]">{company}</p>
+          <p className="text-sm text-[var(--text-muted)]">{role}</p>
         </div>
-        <p className="text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">{period}</p>
+        <p className="shrink-0 text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">
+          {period}
+        </p>
       </div>
+
       {bullets.length > 0 && (
-        <ul className="mt-4 list-disc space-y-3 pl-5 text-sm text-[var(--text-muted)]">
+        <ul className="space-y-2 border-l border-[var(--border-light)] pl-4 text-sm text-[var(--text-muted)]">
           {bullets.map((bullet) => (
             <li key={bullet}>{bullet}</li>
           ))}

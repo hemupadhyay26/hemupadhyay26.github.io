@@ -6,7 +6,6 @@ import { tracks } from '../data'
 const AudioDock = ({ isVisible, command, onPlayingChange }: AudioDockProps) => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [hasBeenShown, setHasBeenShown] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const isPlayingRef = useRef(isPlaying)
 
@@ -57,10 +56,6 @@ const AudioDock = ({ isVisible, command, onPlayingChange }: AudioDockProps) => {
   }, [isPlaying, currentTrackIndex])
 
   useEffect(() => {
-    if (isVisible) setHasBeenShown(true)
-  }, [isVisible])
-
-  useEffect(() => {
     if (!command) return
     queueMicrotask(() => {
       if (command.action === 'play') setIsPlaying(true)
@@ -72,11 +67,16 @@ const AudioDock = ({ isVisible, command, onPlayingChange }: AudioDockProps) => {
 
   return (
     <div
-      className={`fixed bottom-6 right-6 hidden transition-all duration-300 md:block ${
-        isVisible ? 'pointer-events-auto opacity-100 translate-y-0' : 'pointer-events-none opacity-0 translate-y-4'
-      }`}
+      className="fixed bottom-6 right-6 hidden md:block"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translate3d(0,0,0)' : 'translate3d(0,1rem,0)',
+        pointerEvents: isVisible ? 'auto' : 'none',
+        transition: 'opacity 0.3s cubic-bezier(0.22,1,0.36,1), transform 0.3s cubic-bezier(0.22,1,0.36,1)',
+        willChange: 'opacity, transform',
+      }}
     >
-      {hasBeenShown && <div className="pointer-events-auto flex w-[320px] items-center gap-4 rounded-3xl border border-[var(--border-light)] bg-[var(--audio-bg)] p-4 backdrop-blur-xl shadow-[0_25px_60px_rgba(5,10,20,0.65)]">
+      <div className="pointer-events-auto flex w-[320px] items-center gap-4 rounded-3xl border border-[var(--border-light)] bg-[var(--audio-bg)] p-4 backdrop-blur-xl shadow-[0_25px_60px_rgba(5,10,20,0.65)]">
         <div
           className="relative h-16 w-16 rounded-full border border-[var(--border-light)] p-1"
           style={{
@@ -120,7 +120,7 @@ const AudioDock = ({ isVisible, command, onPlayingChange }: AudioDockProps) => {
             </button>
           </div>
         </div>
-      </div>}
+      </div>
     </div>
   )
 }

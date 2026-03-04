@@ -13,7 +13,7 @@ export function SocialIcon({ link, size = 18 }: SocialIconProps) {
   const { Icon, label, href, copyEmail } = link
 
   const baseClass =
-    'relative flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border-light)] text-[var(--text-muted)] transition-all duration-200 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:shadow-[0_0_12px_var(--accent-soft)]'
+    'relative flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border-light)] text-[var(--text-muted)] transition-[border-color,color,box-shadow] duration-200 ease-out hover:border-[var(--accent)] hover:text-[var(--accent)] hover:shadow-[0_0_12px_var(--accent-soft)]'
 
   if (copyEmail) {
     const handleCopy = async () => {
