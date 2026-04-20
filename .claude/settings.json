@@ -1,5 +1,12 @@
 {
   "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(cp \"/home/dev-hemup/.claude/projects/-home-dev-hemup-project-hemupadhyay26-github-io/766c70a6-33e2-457d-88b3-e72fbb2081e3/tool-results/webfetch-1776710920125-oze8zx.bin\" /tmp/design.gz)",
+      "Bash(gunzip -f /tmp/design.gz)",
+      "Read(//tmp/**)",
+      "Bash(tar xf *)"
+    ],
     "additionalDirectories": [
       "/home/dev-hemup/.claude/projects/-home-dev-hemup-project-hemupadhyay26-github-io/memory"
     ]

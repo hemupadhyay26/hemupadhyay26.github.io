@@ -1,67 +1,74 @@
 @import "tailwindcss";
 
 :root {
-  --bg-dark: #030711;
-  --surface: #070c1d;
-  --surface-elevated: #0c1024;
-  --surface-alpha: rgba(7, 12, 29, 0.86);
-  --text-light: #f2f5ff;
-  --text-muted: #a4b0d0;
-  --accent: #4cc2ff;
-  --accent-hover: #2ea3ff;
-  --accent-soft: rgba(76, 194, 255, 0.12);
-  --accent-shadow: rgba(46, 163, 255, 0.35);
-  --border-light: rgba(255, 255, 255, 0.08);
-  --highlight-1: #5f52ff;
-  --highlight-2: #a855f7;
-  --status-green: rgb(59, 201, 109);
-  --status-green-soft: rgba(59, 201, 109, 0.12);
-  --audio-bg: rgba(5, 9, 18, 0.9);
+  --paper: oklch(0.97 0.008 85);
+  --paper-2: oklch(0.94 0.012 85);
+  --ink: oklch(0.18 0.01 60);
+  --ink-2: oklch(0.38 0.01 60);
+  --ink-3: oklch(0.62 0.01 60);
+  --rule: oklch(0.85 0.01 70);
+  --accent: oklch(0.58 0.15 35);
+  --accent-2: oklch(0.72 0.12 80);
+  --serif: "Newsreader", Georgia, serif;
+  --sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Keep audio vars for AudioDock compatibility */
+  --audio-bg: rgba(5, 9, 18, 0.92);
   --audio-disc-dot: rgba(255, 255, 255, 0.7);
   --audio-btn-bg: #ffffff;
   --skeleton-base: #0d1120;
   --skeleton-highlight: #1c2540;
-  --terminal-prompt: #4cc2ff;
-  --terminal-bg: #050912;
 }
 
-body {
-  background-color: var(--bg-dark);
-  background-image:
-    radial-gradient(circle at center, rgba(3, 7, 17, 0) 40%, rgba(3, 7, 17, 0.85)),
-    radial-gradient(circle at 20% 20%, rgba(76, 194, 255, 0.2), transparent 55%),
-    radial-gradient(circle at 80% 10%, rgba(95, 82, 255, 0.12), transparent 50%),
-    repeating-linear-gradient(transparent 0 23px, rgba(255, 255, 255, 0.04) 23px 24px),
-    repeating-linear-gradient(90deg, transparent 0 23px, rgba(255, 255, 255, 0.04) 23px 24px);
-  background-blend-mode: soft-light;
-  color: var(--text-light);
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  letter-spacing: 0.01em;
-  line-height: 1.5;
+[data-theme="dark"] {
+  --paper: oklch(0.16 0.008 60);
+  --paper-2: oklch(0.20 0.012 60);
+  --ink: oklch(0.95 0.01 85);
+  --ink-2: oklch(0.75 0.01 85);
+  --ink-3: oklch(0.55 0.01 70);
+  --rule: oklch(0.30 0.01 70);
+  --accent: oklch(0.72 0.14 40);
+  --accent-2: oklch(0.80 0.12 80);
+  --audio-bg: rgba(20, 18, 15, 0.92);
 }
 
-/* Scrollbar styling */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  cursor: none;
+}
+
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  cursor: none;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a, button { cursor: none; }
+
+::selection {
+  background: var(--accent);
+  color: var(--paper);
+}
+
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(148, 191, 255, 0.4) rgba(3, 7, 17, 0.85);
+  scrollbar-color: var(--rule) var(--paper);
 }
 
-*::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-*::-webkit-scrollbar-track {
-  background: rgba(3, 7, 17, 0.85);
-}
-
-*::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(95, 82, 255, 0.6), rgba(76, 194, 255, 0.6));
-  border-radius: 999px;
-  border: 2px solid rgba(3, 7, 17, 0.9);
-  box-shadow: inset 0 0 6px rgba(3, 7, 17, 0.6);
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, rgba(95, 82, 255, 0.8), rgba(76, 194, 255, 0.8));
-}
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: var(--paper); }
+*::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 999px; }
+*::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
