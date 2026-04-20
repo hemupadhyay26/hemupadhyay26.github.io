@@ -45,6 +45,7 @@ export function ZineTerminal() {
   const [buffer, setBuffer] = useState('')
   const [focused, setFocused] = useState(false)
   const bodyRef = useRef<HTMLDivElement>(null)
+  const mobileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (bodyRef.current) {
@@ -52,6 +53,7 @@ export function ZineTerminal() {
     }
   }, [lines])
 
+  // Desktop keyboard handler
   useEffect(() => {
     if (!focused) return
     const onKey = (e: KeyboardEvent) => {
@@ -81,6 +83,14 @@ export function ZineTerminal() {
     document.addEventListener('click', onClick)
     return () => document.removeEventListener('click', onClick)
   }, [])
+
+  function submitMobile(val: string) {
+    const result = runCmd(val, emailAddress)
+    if (val.trim() === 'clear') { setLines([]); setBuffer(''); return }
+    setLines(prev => [...prev, ...result])
+    setBuffer('')
+    if (mobileInputRef.current) mobileInputRef.current.value = ''
+  }
 
   return (
     <section className="term-sec" id="terminal">
@@ -114,6 +124,28 @@ export function ZineTerminal() {
             <span className="term-c">{buffer}</span>
             <span className="term-caret" />
           </span>
+        </div>
+        {/* Mobile input row — shown only on touch screens via CSS */}
+        <div className="term-mobile-input">
+          <span className="term-p">hem@portfolio</span>
+          <span className="term-k">~</span>
+          <span>$</span>
+          <input
+            ref={mobileInputRef}
+            type="text"
+            autoCapitalize="none"
+            autoCorrect="off"
+            spellCheck={false}
+            placeholder="type a command…"
+            onChange={e => setBuffer(e.target.value)}
+            onKeyDown={e => {
+              if (e.key === 'Enter') {
+                e.preventDefault()
+                submitMobile(buffer)
+              }
+            }}
+          />
+          <button onClick={() => submitMobile(buffer)}>↵</button>
         </div>
       </div>
     </section>
