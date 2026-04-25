@@ -65,7 +65,6 @@ export default function App() {
         <div className="brand">Hem <i>Upadhyay</i></div>
         <nav className="navlinks">
           <a href="#work">Work</a>
-          <a href="#now">Now</a>
           <a href="#terminal">Terminal</a>
           <a href="#contact">Contact</a>
         </nav>

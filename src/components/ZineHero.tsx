@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { heroPortrait, isAvailableForWork, tracks } from '../data'
+import { resumeFile } from '../data'
+import { Pause, Play, SkipForward } from 'lucide-react'
 
 export function ZineHero() {
   const [trackIdx, setTrackIdx] = useState(0)
@@ -43,7 +45,9 @@ export function ZineHero() {
 
       <div className="topline">
         <div>Issue IV · 2026</div>
-        <div className="issue">A portfolio zine</div>
+        <a href={resumeFile} target="_blank" rel="noopener noreferrer">
+          <div className="issue">Preview Resume</div>
+        </a>
         <div>
           <span className="dot pulse" />
           {isAvailableForWork ? 'Open to work' : 'Currently employed'}
@@ -62,7 +66,7 @@ export function ZineHero() {
           </defs>
           <text>
             <textPath href="#circ">
-              AUTOMATION · INFRASTRUCTURE · AGENTS · UPTIME · TERRAFORM ·{' '}
+              INFRASTRUCTURE · AUTOMATION · AGENTS · PIPELINE · TERRAFORM · AWS
             </textPath>
           </text>
           <circle className="dot-c" cx="100" cy="100" r="4" />
@@ -70,23 +74,36 @@ export function ZineHero() {
       </div>
 
       <div className={`np np-hero${!isPlaying ? ' paused' : ''}`}>
-        <button className="np-btn" onClick={togglePlay} aria-label={isPlaying ? 'Pause' : 'Play'}>
-          {isPlaying ? '⏸' : '▶'}
+        <button
+          className="np-btn"
+          onClick={togglePlay}
+          aria-label={isPlaying ? 'Pause' : 'Play'}
+        >
+          {isPlaying ? <Pause size={18} /> : <Play size={18} />}
         </button>
+
         <span className="eq"><i /><i /><i /><i /></span>
+
         <span className="np-label">
           {isPlaying ? `Now Playing · ${track.title}` : 'Play music'}
         </span>
+
         {isPlaying && (
-          <button className="np-btn" onClick={next} aria-label="Next track">⏭</button>
+          <button
+            className="np-btn"
+            onClick={next}
+            aria-label="Next track"
+          >
+            <SkipForward size={18} />
+          </button>
         )}
       </div>
 
       <div className="bottomline">
-        <div className="meta">An assorted collection</div>
+        <div className="meta">Driven by curiosity, built on fundamentals</div>
         <p>
-          Two years of infrastructure, pipelines, and the agentic bits on top —
-          laid out as if someone actually wanted to read a portfolio cover to cover.
+          Curious and driven tech enthusiast who loves stepping out of comfort zones, exploring new trends, and solving
+          problems with modern, practical solutions—while staying grounded in strong foundational knowledge.
         </p>
         <div className="meta" style={{ textAlign: 'right' }}>↓ Scroll down</div>
       </div>

@@ -1,24 +1,41 @@
 import { experienceCards, education, emailAddress, socialLinks, resumeFile } from '../data'
-
-const ABOUT_TAGS = ['DevOps', 'AI eng', 'Python', 'Terraform', 'AWS', 'LangGraph', 'Pydantic', 'Docker', 'CI/CD']
+const ABOUT_TAGS = ['DevOps', 'AWS', 'Terraform', 'Docker', 'CI/CD', 'Automation']
 
 const STACK = [
-  { name: '— Cloud',         items: ['AWS', 'EC2 / ECS', 'RDS', 'S3', 'IAM', 'ES', 'CloudWatch', 'ECR'] },
-  { name: '— Infra as Code', items: ['Terraform', 'Docker', 'GitHub Actions', 'Bitbucket', 'Gitea', 'CI/CD'] },
-  { name: '— Code',          items: ['Python', 'FastAPI', 'Pydantic', 'SQL', 'Bash'] },
-  { name: '— AI',            items: ['LangGraph', 'RAG', 'Agents', 'Bedrock', 'Pydantic AI'] },
+  {
+    name: '— Cloud',
+    items: ['AWS', 'EC2', 'ECS', 'RDS', 'S3', 'IAM', 'ElastiCache', 'OpenSearch', 'CloudWatch', 'ECR']
+  },
+  {
+    name: '— Infrastructure',
+    items: ['Terraform', 'Docker', 'Kubernetes', 'GitHub Actions', 'Bitbucket', 'Gitea', 'CI/CD']
+  },
+  {
+    name: '— Monitoring & Ops',
+    items: ['CloudWatch', 'Prometheus', 'Grafana', 'Cost Optimization']
+  },
+  {
+    name: '— Code',
+    items: ['Python', 'SQL', 'Bash']
+  }
 ]
-
-const NOW_ITEMS = [
-  { tag: 'Build', d: 'Cloud infra & security automation at Strobes',      t: 'In progress' },
-  { tag: 'Read',  d: 'Designing Data-Intensive Applications',              t: 'This month' },
-  { tag: 'Build', d: 'Multi-agent ops tooling with LangGraph',             t: 'Side project' },
-  { tag: 'Ship',  d: 'IAM boundary & cloud security improvements',         t: "Done · Q1 '26" },
-  { tag: 'Write', d: 'DevOps + AI engineering notes on Dev.to',            t: 'Ongoing' },
-]
+// const NOW_ITEMS = [
+//   { tag: 'Build', d: 'Devsecops cicd pipeline',t: 'In progress' },
+// ]
 
 export function ZineMarquee() {
-  const items = ['DevOps', 'AWS', 'Terraform', 'Python', 'LangGraph', 'Pydantic', 'RAG', 'CI/CD', 'Agents']
+  const items = [
+    'DevOps',
+    'AWS',
+    'Terraform',
+    'Docker',
+    'Kubernetes',
+    'CI/CD',
+    'GitHub Actions',
+    'SonarQube',
+    'Python',
+    'Scripting'
+  ]
   const text = items.map(i => `${i} <span>◇</span>`).join(' ')
   return (
     <div className="marq3" aria-hidden="true">
@@ -36,7 +53,7 @@ export function ZineAbout() {
     <section className="about3">
       <div className="left">
         <div className="meta" style={{ marginBottom: '24px' }}>§ 01 / The person</div>
-        <h2>Builds quiet <em>machinery</em> for loud systems.</h2>
+        <h2>Engineers reliable <em>pipelines</em> for chaotic workloads.</h2>
         <div className="tags">
           {ABOUT_TAGS.map(tag => <span key={tag}>{tag}</span>)}
         </div>
@@ -44,14 +61,19 @@ export function ZineAbout() {
       <div className="right">
         <p>
           Two years in production — shipping CI/CD pipelines that behave, Terraform modules
-          that outlive their authors, and Python tools that quietly retire weekly meetings.
+          that outlive their authors, and automation that quietly removes manual effort from daily ops.
         </p>
+
         <p>
-          The AI work came naturally: <em>RAG systems, LangGraph agents, Pydantic workflows</em>.
-          It's the same instinct — find the repetitive, the fragile, the half-thought-through,
-          and replace it with something that reads well and stays up.
+          Focused on building reliable cloud infrastructure — <em>AWS (ECS, RDS, ElastiCache, EC2, ECR),
+            scalable deployments, monitoring, and infrastructure as code</em>.
+          The same instinct applies — find what’s fragile, repetitive, or slow, and replace it with
+          systems that are predictable, observable, and easy to maintain.
         </p>
-        <p>Based in Hyderabad. Currently at Strobes. Taking briefs — say hi.</p>
+
+        <p>
+          Based in Hyderabad. Currently at Strobes. Taking briefs — say hi.
+        </p>
       </div>
     </section>
   )
@@ -59,8 +81,9 @@ export function ZineAbout() {
 
 export function ZineNow() {
   return (
-    <section className="now3" id="now">
-      <div className="lcol">
+    <>
+      {/* <section className="now3" id="now">
+       <div className="lcol">
         <div className="meta" style={{ marginBottom: '24px' }}>§ 02 / On the desk</div>
         <h2>Right <em>now.</em></h2>
         <div className="sub">A log of things in flight · updated weekly</div>
@@ -73,8 +96,9 @@ export function ZineNow() {
             <span className="t">{item.t}</span>
           </div>
         ))}
-      </div>
-    </section>
+      </div> 
+     </section> */}
+    </>
   )
 }
 
@@ -96,35 +120,53 @@ export function ZineStack() {
     </section>
   )
 }
-
 export function ZineExp() {
   return (
     <section className="exp3">
-      <div className="meta" style={{ marginBottom: '24px' }}>§ 04 / A short résumé</div>
+      <div className="meta" style={{ marginBottom: '24px' }}>
+        § 04 / A short résumé
+      </div>
+
       <h2>Where I've <em>been.</em></h2>
+
       <div>
         {experienceCards.map(exp => (
           <div key={`${exp.company}-${exp.period}`} className="row reveal">
             <div className="when">{exp.period}</div>
-            <div className="role">{exp.role}<em>{exp.company}</em></div>
-            <div className="desc">
-              {exp.bullets.length > 0
-                ? exp.bullets.join(' ')
-                : `${exp.role} at ${exp.company}.`}
+
+            <div className="role">
+              {exp.role} <em>{exp.company}</em>
             </div>
+
+            <div className="desc">
+              {exp.bullets.length > 0 ? (
+                <ul>
+                  {exp.bullets.map((b, i) => (
+                    <li key={i}>{b}</li>
+                  ))}
+                </ul>
+              ) : (
+                `${exp.role} at ${exp.company}.`
+              )}
+            </div>
+
             <div className="loc">{exp.location}</div>
           </div>
         ))}
+
         {education.map(edu => (
           <div key={edu.title} className="row reveal">
             <div className="when">{edu.period}</div>
+
             <div className="role">
-              B.Tech, CS&E<em>{edu.institution.split(',')[0]}</em>
+              B.Tech, CSE <em>{edu.institution}</em>
             </div>
+
             <div className="desc">
-              Independent projects in cloud, automation, and AI tooling.
+              {edu.description}
             </div>
-            <div className="loc">Uttarakhand, IN</div>
+
+            <div className="loc">{edu.loc}</div>
           </div>
         ))}
       </div>
@@ -165,7 +207,6 @@ export function ZineContact() {
 
       <div className="foot3">
         <div>© MMXXVI · Hem Upadhyay</div>
-        <div>Set in Newsreader & Geist</div>
         <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>
           ↑ Back to top
         </a>

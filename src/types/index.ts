@@ -65,6 +65,8 @@ export type Education = {
   title: string
   period: string
   institution: string
+  description: string
+  loc: string
 }
 
 export type FloatingTag = {

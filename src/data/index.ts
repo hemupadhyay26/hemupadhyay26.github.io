@@ -11,7 +11,7 @@ import audio3 from '../assets/audio/audio3.mp3'
 import track1Cover from '../assets/audio/track1Cover.jpg'
 import track2Cover from '../assets/audio/track2Cover.jpg'
 import track3Cover from '../assets/audio/track3Cover.jpg'
-import { Github, Linkedin, Mail, MessageSquare } from 'lucide-react'
+import { Github, Linkedin, MessageSquare } from 'lucide-react'
 import type { NavLink, Project, Experience, Education, FloatingTag, Track, SocialLink, TerminalCommand } from '../types'
 import { ProjectShape, ProjectSize } from '../types'
 
@@ -82,20 +82,25 @@ export const myWork: Project[] = [
 
 export const experienceCards: Experience[] = [
   {
-    location: 'Remote, Hyderabad',
+    location: 'Remote, Hyderabad, India',
     company: 'Strobes',
     role: 'Cloud Engineer',
-    period: 'Nov 2025 – PRESENT',
-    bullets: [],
+    period: 'Nov 2025 – Present',
+    bullets: [
+      'Built and maintained fully automated DevSecOps CI/CD pipelines for a SaaS platform.',
+      'Managed and optimized AWS infrastructure to improve uptime and reduce operational costs.',
+      'Implemented monitoring and alerting using Prometheus and Grafana to ensure system reliability and performance.',
+      'Developed Python automation scripts to eliminate repetitive tasks and streamline operations.'
+    ],
   },
   {
     location: 'Uttarakhand, India',
     company: 'Rubico IT',
-    role: 'Devops Engineer',
+    role: 'DevOps Engineer',
     period: 'Mar 2024 – Oct 2025',
     bullets: [
-      'Fully automated CI/CD pipelines for deploy on dev/stage/prod environments.',
-      'Monitoring and alerting for the production systems(cloudwatch, grafana, etc.).',
+      'Designed and implemented CI/CD pipelines across development, staging, and production environments.',
+      'Set up monitoring and alerting systems using AWS CloudWatch and Grafana for production workloads.'
     ],
   },
 ]
@@ -104,7 +109,9 @@ export const education: Education[] = [
   {
     title: "Bachelor's of Technology in Computer Science and Engineering",
     period: '2020 – 2024',
-    institution: 'Graphic Era University, Bhimtal, Uttarakhand',
+    institution: 'Graphic Era University',
+    description: 'Study about the core software engineering subjects, and a bit of system design. Graduated with First Class Honors, and a CGPA of 8.67/10.',
+    loc: 'Uttarakhand, India',
   },
 ]
 
@@ -158,13 +165,6 @@ export const socialLinks: SocialLink[] = [
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/hem-upadhyay-4460b31b9/',
     Icon: Linkedin,
-  },
-  {
-    id: 'email',
-    label: 'Copy email',
-    href: '#',
-    Icon: Mail,
-    copyEmail: true,
   },
   {
     id: 'devto',
