@@ -66,7 +66,7 @@ export function ZineHero() {
           </defs>
           <text>
             <textPath href="#circ">
-              INFRASTRUCTURE · AUTOMATION · AGENTS · PIPELINE · TERRAFORM · AWS
+              AWS INFRASTRUCTURE · AUTOMATION · AGENTS · PIPELINE · MONITORING
             </textPath>
           </text>
           <circle className="dot-c" cx="100" cy="100" r="4" />

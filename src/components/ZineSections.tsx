@@ -1,23 +1,23 @@
 import { experienceCards, education, emailAddress, socialLinks, resumeFile } from '../data'
-const ABOUT_TAGS = ['DevOps', 'AWS', 'Terraform', 'Docker', 'CI/CD', 'Automation']
+const ABOUT_TAGS = ['DevOps', 'AWS', 'Terraform', 'Docker', 'CI/CD', 'Automation', 'Monitoring']
 
 const STACK = [
   {
-    name: '— Cloud',
-    items: ['AWS', 'EC2', 'ECS', 'RDS', 'S3', 'IAM', 'ElastiCache', 'OpenSearch', 'CloudWatch', 'ECR']
-  },
-  {
     name: '— Infrastructure',
-    items: ['Terraform', 'Docker', 'Kubernetes', 'GitHub Actions', 'Bitbucket', 'Gitea', 'CI/CD']
+    items: ['Terraform', 'Docker', 'Sentry', 'GitHub Actions', 'Elastic Search', 'Rabbitmq', 'Redis', 'Gitea', 'CI/CD']
   },
   {
     name: '— Monitoring & Ops',
-    items: ['CloudWatch', 'Prometheus', 'Grafana', 'Cost Optimization']
+    items: ['CloudWatch', 'Prometheus', 'Grafana', 'Cost Optimization', 'DevSecOps']
   },
   {
     name: '— Code',
-    items: ['Python', 'SQL', 'Bash']
-  }
+    items: ['Python', 'Bash']
+  },
+  {
+    name: '— Cloud',
+    items: ['AWS']
+  },
 ]
 // const NOW_ITEMS = [
 //   { tag: 'Build', d: 'Devsecops cicd pipeline',t: 'In progress' },
@@ -29,12 +29,15 @@ export function ZineMarquee() {
     'AWS',
     'Terraform',
     'Docker',
-    'Kubernetes',
+    'Sentry',
     'CI/CD',
     'GitHub Actions',
     'SonarQube',
     'Python',
-    'Scripting'
+    'Scripting',
+    'Cost Optimization',
+    'Monitoring',
+    'Automation',
   ]
   const text = items.map(i => `${i} <span>◇</span>`).join(' ')
   return (
@@ -71,9 +74,6 @@ export function ZineAbout() {
           systems that are predictable, observable, and easy to maintain.
         </p>
 
-        <p>
-          Based in Hyderabad. Currently at Strobes. Taking briefs — say hi.
-        </p>
       </div>
     </section>
   )

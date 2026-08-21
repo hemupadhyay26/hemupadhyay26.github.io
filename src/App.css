@@ -96,7 +96,7 @@
 }
 .hero3 h1 .r1 { display: block; }
 .hero3 h1 .r2 { display: block; text-align: right; font-style: italic; color: #ff3c28; margin-top: -0.05em; text-shadow: 0 0 40px rgba(255,60,40,.5); }
-.hero3 h1 .r3 { display: block; -webkit-text-stroke: 1px #f5efe8; color: transparent; text-shadow: none; margin-top: 10px; }
+.hero3 h1 .r3 { display: block; -webkit-text-stroke: 3px #f5efe8; color: transparent; text-shadow: none; margin-top: 10px; }
 .hero3 .spin {
   position: absolute; top: 80px; right: 32px; width: 140px; height: 140px;
   animation: spin 20s linear infinite; z-index: 3;
@@ -217,7 +217,7 @@
 .exp3 .role { font-family: var(--serif); font-size: 30px; font-weight: 400; }
 .exp3 .role em { font-style: italic; color: var(--ink-2); font-size: 18px; display: block; margin-top: 2px; }
 .exp3 .desc { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
-.exp3 .loc { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); text-align: right; text-transform: uppercase; letter-spacing: 0.1em; }
+.exp3 .loc { font-family: var(--mono);font-size: 10px; color: var(--ink-3); text-align: left; text-transform: uppercase; letter-spacing: 0.1em; }
 
 /* Terminal section */
 .term-sec { padding: 120px 32px; border-top: 2px solid var(--ink); background: var(--paper); }

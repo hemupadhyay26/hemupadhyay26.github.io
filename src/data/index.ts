@@ -133,7 +133,7 @@ export const floatingTags: FloatingTag[] = [
   { label: 'Docker', top: '18%', left: '82%', delay: '0.3s', duration: '6.9s' },
 
   { label: 'CI/CD', top: '55%', left: '48%', delay: '0.8s', duration: '7.3s' },
-  { label: 'Kubernetes', top: '82%', left: '18%', delay: '1.1s', duration: '9.0s' },
+  { label: 'Sentry', top: '82%', left: '18%', delay: '1.1s', duration: '9.0s' },
   { label: 'Linux', top: '84%', left: '73%', delay: '0.9s', duration: '6.5s' },
   { label: 'Monitoring', top: '38%', left: '23%', delay: '1.5s', duration: '8.5s' },
 
