@@ -83,3 +83,10 @@ button {
 *::-webkit-scrollbar-thumb:hover {
   background: var(--ink-3);
 }
+
+/* ── Custom cursor: force hide native cursor everywhere on desktop ── */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
