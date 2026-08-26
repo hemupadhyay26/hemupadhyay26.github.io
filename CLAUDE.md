@@ -22,17 +22,18 @@ Single-page React 19 portfolio site deployed to GitHub Pages at `https://hemupad
 
 ### File structure
 
-- [src/App.tsx](src/App.tsx) — The entire page. All sections (hero, work, experience, education, skills cloud) live here as inline JSX. Content data (nav links, projects, experience, education, floating skill tags) is defined as plain arrays/constants at the top of the file.
-- [src/components/AudioDock.tsx](src/components/AudioDock.tsx) — Fixed floating music player (desktop only). Controlled by `App` via an `AudioCommand` object (`{ id, action: 'play' | 'pause' }`), which lets `App` trigger play/pause without the dock needing to be visible.
-- [src/index.css](src/index.css) — Global CSS variables (design tokens: `--bg-dark`, `--surface`, `--accent`, etc.), body background gradient, and scrollbar styles. Imported first in `main.tsx`.
-- [src/App.css](src/App.css) — `@keyframes floatTag` animation and `.floating-chip` / `.skill-cloud` helper classes used by the skills section.
+- [src/App.tsx](src/App.tsx) — Main portfolio layout assembling the V3 Zine components and custom cursor.
+- [src/components/ZineHero.tsx](src/components/ZineHero.tsx) — Hero section with spinning circular badge and embedded audio player.
+- [src/components/ZineSections.tsx](src/components/ZineSections.tsx) — About, Toolbox/Stack, Résumé/Experience, and Contact sections.
+- [src/components/ZineWorks.tsx](src/components/ZineWorks.tsx) — Selected projects grid.
+- [src/components/ZineTerminal.tsx](src/components/ZineTerminal.tsx) — Interactive CLI terminal widget.
+- [src/components/NimbuMirchi.tsx](src/components/NimbuMirchi.tsx) — Nimbu Mirchi dangling interactive talisman component.
+- [src/data/index.ts](src/data/index.ts) — Portfolio data (projects, experience, education, social links, audio tracks).
+- [src/types/index.ts](src/types/index.ts) — TypeScript interfaces and types for portfolio models.
+- [src/index.css](src/index.css) — Design tokens and global styles.
+- [src/App.css](src/App.css) — Styles for the Zine editorial portfolio design.
 
 ### Styling conventions
 
-- All colors use CSS custom properties defined in `index.css` (e.g. `text-[var(--accent)]`, `bg-[var(--surface)]`). Do not hardcode hex values in JSX—use these tokens.
-- Tailwind utility classes are the primary styling mechanism. Custom CSS in `.css` files is kept to a minimum (animations, global resets).
+- Design tokens are defined in `index.css` (`--paper`, `--paper-2`, `--ink`, `--ink-2`, `--ink-3`, `--rule`, `--accent`, `--accent-2`, `--serif`, `--sans`, `--mono`).
 - The `base` in `vite.config.ts` is set to `"/"` for GitHub Pages deployment from the root domain.
-
-### Audio dock control pattern
-
-`App` maintains `audioCommand: { id: number, action: 'play' | 'pause' } | null`. A new object with a fresh `Date.now()` id is created each time an action is needed, so `AudioDock` can react via a `useEffect` on `command` even when the action is the same as before.

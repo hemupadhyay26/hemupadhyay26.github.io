@@ -12,24 +12,11 @@ import track1Cover from '../assets/audio/track1Cover.jpg'
 import track2Cover from '../assets/audio/track2Cover.jpg'
 import track3Cover from '../assets/audio/track3Cover.jpg'
 import { Github, Linkedin, MessageSquare } from 'lucide-react'
-import type { NavLink, Project, Experience, Education, FloatingTag, Track, SocialLink, TerminalCommand } from '../types'
-import { ProjectShape, ProjectSize } from '../types'
+import type { Project, Experience, Education, Track, SocialLink } from '../types'
 
 export { heroPortrait, resumeFile }
 
-export const navLinks: NavLink[] = [
-  { label: 'Home', href: '#home' },
-  { label: 'My Work', href: '#work' },
-  { label: 'Terminal', href: '#terminal' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/hem-upadhyay-4460b31b9/', external: true },
-  { label: 'Preview Resume', href: resumeFile, external: true },
-]
-
 export const isAvailableForWork: boolean = false
-
-export const aboutText = `DevOps Engineer with 2+ years of experience building scalable AWS infrastructure, automating CI/CD pipelines, and improving reliability across production systems. Skilled in Terraform, Docker, GitHub Actions, Bitbucket, Gitea, and core AWS services including EC2, RDS, ECS, ECR, S3, IAM, SES, and CloudWatch. I focus on automation, uptime, secure deployments, and high-performance systems.
-
-Alongside DevOps, I also work extensively with Python, creating automation scripts and internal tooling to streamline operations. I have hands-on experience in AI engineering, including building RAG models, developing AI agents using LangGraph, and applying Pydantic for robust data workflows. This blend of DevOps and AI enables me to design intelligent, automated solutions that improve efficiency and reduce operational complexity.`
 
 export const emailAddress = 'hemupadhyay234@gmail.com'
 
@@ -40,7 +27,6 @@ export const myWork: Project[] = [
     cover: 'infuse ai',
     image: projectInfuseAi,
     url: 'https://github.com/hemupadhyay26/infuse-ai',
-    shape: ProjectShape.MainSquare, // ← featured highlight, only ONE allowed, always large
   },
   {
     title: 'SSH Credential Manager',
@@ -48,17 +34,13 @@ export const myWork: Project[] = [
     cover: 'ssh credential manager',
     image: projectSshCredManager,
     url: 'https://github.com/hemupadhyay26/ssh-cred-manager-nodejs',
-    size: ProjectSize.Small,
-    shape: ProjectShape.Vertical,
   },
   {
     title: 'Interview AI',
     description: 'A AI agent that helps you prepare for your interviews based on the job description.',
     cover: 'interview ai',
     image: projectInterviewAi,
-    url: 'https://github.com/hemupadhyay26/interview-ai-agent-python', // GitHub: https://github.com/hemupadhyay26/<repo-name>
-    shape: ProjectShape.Square,
-    size: ProjectSize.Small,
+    url: 'https://github.com/hemupadhyay26/interview-ai-agent-python',
   },
   {
     title: 'Slack Notification Template',
@@ -66,8 +48,6 @@ export const myWork: Project[] = [
     cover: 'slack notification template',
     image: projectSlackNotification,
     url: 'https://github.com/hemupadhyay26/slack-github-action-template',
-    shape: ProjectShape.Horizontal,
-    size: ProjectSize.Small,
   },
   {
     title: 'Tantrumpy',
@@ -75,9 +55,7 @@ export const myWork: Project[] = [
     cover: 'tantrumpy',
     image: projectTantrumpy,
     url: 'https://github.com/hemupadhyay26/tantrumpy',
-    shape: ProjectShape.Square,
-    size: ProjectSize.Small,
-  }
+  },
 ]
 
 export const experienceCards: Experience[] = [
@@ -115,44 +93,6 @@ export const education: Education[] = [
   },
 ]
 
-export const floatingTags: FloatingTag[] = [
-  { label: 'DevOps', top: '8%', left: '10%', delay: '0s', duration: '8.4s' },
-  { label: 'GIT', top: '8%', left: '80%', delay: '0.3s', duration: '7.2s' },
-  { label: 'GITHUB CI/CD', top: '5%', left: '60%', delay: '0.3s', duration: '7.2s' },
-  { label: 'Gitops', top: '28%', left: '15%', delay: '0.8s', duration: '6.7s' },
-  { label: 'AWS', top: '25%', left: '75%', delay: '1.1s', duration: '7.9s' },
-
-  { label: 'ECS', top: '58%', left: '10%', delay: '0.6s', duration: '6.4s' },
-  { label: 'AI Agents', top: '48%', left: '72%', delay: '1.0s', duration: '8.6s' },
-  { label: 'Terraform', top: '18%', left: '43%', delay: '0.2s', duration: '9.3s' },
-  { label: 'Python', top: '40%', left: '33%', delay: '0.5s', duration: '7.6s' },
-
-  { label: 'Scripting', top: '68%', left: '28%', delay: '1.3s', duration: '6.2s' },
-  { label: 'RDS', top: '70%', left: '63%', delay: '0.4s', duration: '8.1s' },
-  { label: 'Grafana', top: '35%', left: '53%', delay: '1.4s', duration: '7.0s' },
-  { label: 'Docker', top: '18%', left: '82%', delay: '0.3s', duration: '6.9s' },
-
-  { label: 'CI/CD', top: '55%', left: '48%', delay: '0.8s', duration: '7.3s' },
-  { label: 'Sentry', top: '82%', left: '18%', delay: '1.1s', duration: '9.0s' },
-  { label: 'Linux', top: '84%', left: '73%', delay: '0.9s', duration: '6.5s' },
-  { label: 'Monitoring', top: '38%', left: '23%', delay: '1.5s', duration: '8.5s' },
-
-  { label: 'GITHUB', top: '62%', left: '42%', delay: '1s', duration: '6.6s' },
-  { label: 'LangGraph', top: '52%', left: '78%', delay: '1.3s', duration: '8.8s' },
-  { label: 'Pydantic', top: '72%', left: '52%', delay: '0.2s', duration: '7.1s' },
-
-  { label: 'AI Automation', top: '20%', left: '58%', delay: '0.6s', duration: '9.2s' },
-  { label: 'ECR', top: '46%', left: '12%', delay: '1s', duration: '6.8s' },
-  { label: 'SES', top: '32%', left: '42%', delay: '0.7s', duration: '8.0s' },
-  { label: 'CloudWatch', top: '65%', left: '72%', delay: '1.3s', duration: '7.7s' },
-
-  { label: 'S3', top: '14%', left: '23%', delay: '0.3s', duration: '8.3s' },
-  { label: 'IAM', top: '76%', left: '33%', delay: '0.9s', duration: '6.7s' },
-  { label: 'Automation', top: '44%', left: '47%', delay: '1.2s', duration: '9.4s' },
-  { label: 'Containerization', top: '33%', left: '69%', delay: '1.4s', duration: '8.7s' },
-  { label: 'Infrastructure as Code', top: '86%', left: '47%', delay: '0.7s', duration: '6.4s' },
-]
-
 export const socialLinks: SocialLink[] = [
   {
     id: 'github',
@@ -169,7 +109,7 @@ export const socialLinks: SocialLink[] = [
   {
     id: 'devto',
     label: 'Dev.to',
-    href: 'https://dev.to/hem_upadhyay_ad9428dc9ddc', 
+    href: 'https://dev.to/hem_upadhyay_ad9428dc9ddc',
     Icon: MessageSquare,
   },
 ]
@@ -192,118 +132,5 @@ export const tracks: Track[] = [
     artist: 'No copyright music',
     artwork: track3Cover,
     src: audio3,
-  },
-]
-
-export const terminalCommands: TerminalCommand[] = [
-  {
-    command: 'whoami',
-    description: 'Who is Hem Upadhyay',
-    output: [
-      'Hem Upadhyay — Cloud & DevOps Engineer',
-      '',
-      'DevOps Engineer with 2+ years of experience building scalable AWS',
-      'infrastructure, automating CI/CD pipelines, and improving reliability',
-      'across production systems.',
-      '',
-      'Also works in AI engineering: RAG models, AI agents (LangGraph),',
-      'and data workflows with Pydantic.',
-    ],
-  },
-  {
-    command: 'skills',
-    description: 'Technical skills and tools',
-    output: [
-      'Cloud & Infrastructure:',
-      '  AWS (EC2, ECS, ECR, RDS, S3, IAM, SES, CloudWatch)',
-      '  Terraform · Docker · Kubernetes',
-      '',
-      'CI/CD & GitOps:',
-      '  GitHub Actions · Bitbucket · Gitea · GitHub CI/CD',
-      '',
-      'Monitoring:',
-      '  CloudWatch · Grafana',
-      '',
-      'Languages & AI:',
-      '  Python · LangGraph · Pydantic · RAG Models · AI Agents',
-    ],
-  },
-  {
-    command: 'experience',
-    description: 'Work history and roles',
-    output: [
-      '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-      'Cloud Engineer — Strobes',
-      'Nov 2025 – PRESENT · Remote, Hyderabad',
-      '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-      'DevOps Engineer — Rubico IT',
-      'Mar 2024 – Oct 2025 · Uttarakhand, India',
-      '  • Fully automated CI/CD pipelines (dev/stage/prod)',
-      '  • Monitoring and alerting (CloudWatch, Grafana)',
-    ],
-  },
-  {
-    command: 'education',
-    description: 'Academic background',
-    output: [
-      'B.Tech in Computer Science & Engineering',
-      'Graphic Era University, Bhimtal, Uttarakhand',
-      '2020 – 2024',
-    ],
-  },
-  {
-    command: 'work',
-    description: 'Projects and portfolio',
-    output: [
-      'Infuse AI      — RAG-based AI agent for document Q&A',
-      'Interview AI   — AI interview prep based on job descriptions',
-      'SSH Cred Mgr   — SSH credential management tool',
-      'Slack Notifs   — CI/CD Slack notification templates',
-      '',
-      'View all: https://github.com/hemupadhyay26',
-    ],
-  },
-  {
-    command: 'contact',
-    description: 'Contact information',
-    output: [
-      'Email:    hemupadhyay234@gmail.com',
-      'GitHub:   https://github.com/hemupadhyay26',
-      'LinkedIn: https://www.linkedin.com/in/hem-upadhyay-4460b31b9/',
-      'Dev.to:   https://dev.to/hem_upadhyay_ad9428dc9ddc',
-    ],
-  },
-  {
-    command: 'about',
-    description: 'More about me',
-    output: [
-      'I focus on automation, uptime, secure deployments, and high-performance',
-      'systems. I blend DevOps and AI to design intelligent, automated solutions',
-      'that improve efficiency and reduce operational complexity.',
-      '',
-      "When I'm not building infrastructure, I'm exploring AI agents and LLMs.",
-    ],
-  },
-
-  // ── Classic bash easter eggs ─────────────────────────────────────────────
-  {
-    command: 'ls',
-    description: 'List directory contents',
-    output: [
-      'total 42',
-      'drwxr-xr-x  hem  staff   about/',
-      'drwxr-xr-x  hem  staff   experience/',
-      'drwxr-xr-x  hem  staff   skills/',
-      'drwxr-xr-x  hem  staff   projects/',
-      'drwxr-xr-x  hem  staff   education/',
-      '-rw-r--r--  hem  staff   contact.txt',
-      '-rw-r--r--  hem  staff   resume.pdf',
-      '-rwxr-xr-x  hem  staff   deploy.sh*',
-    ],
-  },
-  {
-    command: 'pwd',
-    description: 'Print working directory',
-    output: ['/home/hem/portfolio'],
   },
 ]

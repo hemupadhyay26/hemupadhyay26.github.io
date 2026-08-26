@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { heroPortrait, isAvailableForWork, tracks } from '../data'
-import { resumeFile } from '../data'
+import { heroPortrait, isAvailableForWork, tracks, resumeFile } from '../data'
 import { Pause, Play, SkipForward } from 'lucide-react'
 
 export function ZineHero() {
@@ -17,7 +16,7 @@ export function ZineHero() {
     const onEnded = () => setTrackIdx(i => (i + 1) % tracks.length)
     audio.addEventListener('ended', onEnded)
     return () => { audio.pause(); audio.removeEventListener('ended', onEnded) }
-  }, [trackIdx])
+  }, [track.src])
 
   useEffect(() => {
     if (!audioRef.current) return

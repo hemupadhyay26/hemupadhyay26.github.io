@@ -12,13 +12,6 @@
   --serif: "Newsreader", Georgia, serif;
   --sans: "Geist", ui-sans-serif, system-ui, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, monospace;
-
-  /* Keep audio vars for AudioDock compatibility */
-  --audio-bg: rgba(5, 9, 18, 0.92);
-  --audio-disc-dot: rgba(255, 255, 255, 0.7);
-  --audio-btn-bg: #ffffff;
-  --skeleton-base: #0d1120;
-  --skeleton-highlight: #1c2540;
 }
 
 [data-theme="dark"] {
@@ -30,10 +23,11 @@
   --rule: oklch(0.30 0.01 70);
   --accent: oklch(0.72 0.14 40);
   --accent-2: oklch(0.80 0.12 80);
-  --audio-bg: rgba(20, 18, 15, 0.92);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -45,7 +39,8 @@ html {
   cursor: none;
 }
 
-html, body {
+html,
+body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
@@ -56,7 +51,10 @@ html, body {
   overflow-x: hidden;
 }
 
-a, button { cursor: none; }
+a,
+button {
+  cursor: none;
+}
 
 ::selection {
   background: var(--accent);
@@ -68,7 +66,20 @@ a, button { cursor: none; }
   scrollbar-color: var(--rule) var(--paper);
 }
 
-*::-webkit-scrollbar { width: 8px; height: 8px; }
-*::-webkit-scrollbar-track { background: var(--paper); }
-*::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 999px; }
-*::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--rule);
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-3);
+}

@@ -1,0 +1,161 @@
+/* =========================================================
+   NIMBU MIRCHI — PENDULUM ONLY
+   ========================================================= */
+
+.nimbu-mirchi-wrap {
+    position: absolute;
+
+    top: 100%;
+    right: 24px;
+
+    width: 72px;
+    height: auto;
+
+    /*
+   * The rope is the pivot.
+   * Continuous physics engine controls the swing smoothly from here.
+   */
+    transform-origin: 50% 0%;
+
+    will-change: transform;
+    backface-visibility: hidden;
+
+    /*
+   * Interactive pull / drag support.
+   */
+    cursor: grab;
+    touch-action: none;
+    pointer-events: auto;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+
+    /*
+   * Keep it above the page.
+   */
+    z-index: 100;
+
+    /*
+   * Don't clip the hanging SVG.
+   */
+    overflow: visible;
+}
+
+.nimbu-mirchi-wrap.is-pulling {
+    cursor: grabbing;
+}
+
+
+/* =========================================================
+   SVG
+   ========================================================= */
+
+.nimbu-mirchi {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    overflow: visible;
+
+    pointer-events: none;
+
+    /*
+   * No additional animation.
+   */
+    animation: none;
+
+    /*
+   * No transition.
+   */
+    transition: none;
+
+    /*
+   * Prevent browser image dragging.
+   */
+    -webkit-user-drag: none;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1440px) {
+    .nimbu-mirchi-wrap {
+        right: 28px;
+        width: 76px;
+    }
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 1025px) and (max-width: 1439px) {
+    .nimbu-mirchi-wrap {
+        right: 24px;
+        width: 72px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .nimbu-mirchi-wrap {
+        right: 16px;
+        width: 64px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .nimbu-mirchi-wrap {
+        right: 12px;
+        width: 58px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+    .nimbu-mirchi-wrap {
+        right: 8px;
+        width: 50px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+    .nimbu-mirchi-wrap {
+        right: 6px;
+        width: 46px;
+    }
+}
+
+
+/* =========================================================
+   IMPORTANT:
+   NAVBAR MUST NOT CLIP THE ROPE
+   ========================================================= */
+
+.chrome {
+    position: fixed;
+    overflow: visible;
+}

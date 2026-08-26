@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { ZineHero } from './components/ZineHero'
 import { ZineWorks } from './components/ZineWorks'
 import { ZineTerminal } from './components/ZineTerminal'
+import { NimbuMirchi } from './components/NimbuMirchi'
 import { ZineMarquee, ZineAbout, ZineNow, ZineStack, ZineExp, ZineContact } from './components/ZineSections'
 import './App.css'
 
@@ -68,6 +69,8 @@ export default function App() {
           <a href="#terminal">Terminal</a>
           <a href="#contact">Contact</a>
         </nav>
+
+        <NimbuMirchi />
       </header>
 
       <main className="stage">
