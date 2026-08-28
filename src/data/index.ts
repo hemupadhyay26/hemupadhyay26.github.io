@@ -33,14 +33,14 @@ export const myWork: Project[] = [
     description: 'A tool that helps you manage your SSH credentials.',
     cover: 'ssh credential manager',
     image: projectSshCredManager,
-    url: 'https://github.com/hemupadhyay26/ssh-cred-manager-nodejs',
+    url: 'https://github.com/hemupadhyay26/ssh-cred-manager-python',
   },
   {
     title: 'Interview AI',
     description: 'A AI agent that helps you prepare for your interviews based on the job description.',
     cover: 'interview ai',
     image: projectInterviewAi,
-    url: 'https://github.com/hemupadhyay26/interview-ai-agent-python',
+    url: 'https://github.com/hemupadhyay26/interview-prep-helper/',
   },
   {
     title: 'Slack Notification Template',

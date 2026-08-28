@@ -587,6 +587,26 @@
   font-family: var(--serif);
   font-style: italic;
   font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card .card-foot .go svg {
+  display: block;
+}
+
+/* animate-ui icon alignment */
+.scroll-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.foot3 a.to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .c-a {

@@ -1,5 +1,7 @@
 import { experienceCards, education, emailAddress, socialLinks, resumeFile } from '../data'
-const ABOUT_TAGS = ['DevOps', 'AWS', 'Terraform', 'Docker', 'CI/CD', 'Automation', 'Monitoring']
+import { AnimateIcon } from './animate-ui/icons/icon'
+import { ArrowUp } from './animate-ui/icons/arrow-up'
+const ABOUT_TAGS = ['DevOps', 'AWS', 'ECS / EC2', 'Terraform', 'Terragrunt', 'CI/CD', 'Cost Optimization', 'Monitoring']
 
 const STACK = [
   {
@@ -63,15 +65,16 @@ export function ZineAbout() {
       </div>
       <div className="right">
         <p>
-          Two years in production — shipping CI/CD pipelines that behave, Terraform modules
-          that outlive their authors, and automation that quietly removes manual effort from daily ops.
+          Two years in production — hosting containerised services on <em>AWS ECS and EC2</em>,
+          provisioning infrastructure with <em>Terraform</em>, and wiring GitHub Actions
+          so deployments ship themselves instead of waiting on someone.
         </p>
 
         <p>
-          Focused on building reliable cloud infrastructure — <em>AWS (ECS, RDS, ElastiCache, EC2, ECR),
-            scalable deployments, monitoring, and infrastructure as code</em>.
-          The same instinct applies — find what’s fragile, repetitive, or slow, and replace it with
-          systems that are predictable, observable, and easy to maintain.
+          The focus is on what comes after “it works” — <em>scaling services under load, trimming
+            cloud spend, and keeping everything as infrastructure&nbsp;as&nbsp;code</em> so environments
+          stay predictable, observable, and easy to maintain. Same instinct throughout: find what’s
+          fragile, repetitive, or slow, and replace it with systems that hold up.
         </p>
 
       </div>
@@ -207,9 +210,15 @@ export function ZineContact() {
 
       <div className="foot3">
         <div>© MMXXVI · Hem Upadhyay</div>
-        <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>
-          ↑ Back to top
-        </a>
+        <AnimateIcon asChild animateOnHover>
+          <a
+            className="to-top"
+            href="#"
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+          >
+            <ArrowUp size={13} /> Back to top
+          </a>
+        </AnimateIcon>
       </div>
     </>
   )

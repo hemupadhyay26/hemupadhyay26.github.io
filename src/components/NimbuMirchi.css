@@ -46,6 +46,16 @@
     cursor: grabbing;
 }
 
+/*
+ * Reduced motion: the JS loop is skipped entirely, so drop the
+ * permanent compositor layer hint too.
+ */
+@media (prefers-reduced-motion: reduce) {
+    .nimbu-mirchi-wrap {
+        will-change: auto;
+    }
+}
+
 
 /* =========================================================
    SVG

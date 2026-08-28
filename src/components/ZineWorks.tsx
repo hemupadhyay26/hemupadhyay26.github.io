@@ -1,4 +1,6 @@
 import { myWork } from '../data'
+import { AnimateIcon } from './animate-ui/icons/icon'
+import { ArrowRight } from './animate-ui/icons/arrow-right'
 
 const CARD_CONFIG = [
   { spanClass: 'c-a', kind: 'AI · RAG',      status: "Shipped '25", featured: true },
@@ -26,8 +28,8 @@ export function ZineWorks() {
         {myWork.slice(0, 5).map((project, i) => {
           const cfg = CARD_CONFIG[i]
           return (
+            <AnimateIcon key={project.title} asChild animateOnHover>
             <a
-              key={project.title}
               className={`card ${cfg.spanClass}`}
               href={project.url}
               target="_blank"
@@ -51,9 +53,10 @@ export function ZineWorks() {
               <p>{project.description}</p>
               <div className="card-foot">
                 <div className="st">{cfg.status}</div>
-                <div className="go">View →</div>
+                <div className="go">View <ArrowRight size={15} /></div>
               </div>
             </a>
+            </AnimateIcon>
           )
         })}
       </div>

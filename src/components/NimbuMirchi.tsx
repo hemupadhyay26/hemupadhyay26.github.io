@@ -1,6 +1,13 @@
 import { useRef, useState, useEffect } from 'react'
 import './NimbuMirchi.css'
 
+// Physics constants (hoisted so the rAF loop never re-allocates them)
+const RAD = Math.PI / 180
+const DEG = 180 / Math.PI
+const OMEGA0 = 4.2
+const OMEGA0_SQ = OMEGA0 * OMEGA0
+const DEFAULT_AMP = 6.5
+
 export function NimbuMirchi() {
     const wrapRef = useRef<HTMLDivElement>(null)
     const ropeRef = useRef<SVGGElement>(null)
@@ -17,146 +24,11 @@ export function NimbuMirchi() {
         extraYVel: 0,
         targetAngle: 0,
         targetExtraY: 0,
-        lastPluckY: 0,
     })
 
-    const audioCtxRef = useRef<AudioContext | null>(null)
-    const noiseBufferRef = useRef<AudioBuffer | null>(null)
+    // Restarts the physics rAF loop if it has parked itself (reduced-motion at rest).
+    const startLoopRef = useRef<(() => void) | null>(null)
     const [isPulling, setIsPulling] = useState(false)
-
-    // Audio synthesizer using Web Audio API for organic rope / twine friction & snap
-    const getAudioContext = () => {
-        if (!audioCtxRef.current) {
-            const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
-            if (AudioCtx) {
-                audioCtxRef.current = new AudioCtx()
-            }
-        }
-        if (audioCtxRef.current && audioCtxRef.current.state === 'suspended') {
-            audioCtxRef.current.resume()
-        }
-        return audioCtxRef.current
-    }
-
-    const getNoiseBuffer = (ctx: AudioContext) => {
-        if (!noiseBufferRef.current) {
-            const bufferSize = Math.floor(ctx.sampleRate * 0.4)
-            const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
-            const data = buffer.getChannelData(0)
-            for (let i = 0; i < bufferSize; i++) {
-                // Granular fibrous friction noise
-                data[i] = (Math.random() * 2 - 1) * 0.6
-            }
-            noiseBufferRef.current = buffer
-        }
-        return noiseBufferRef.current
-    }
-
-    // Authentic rope / jute twine stretch creak
-    const playRopeStretchSound = (tension = 0.5) => {
-        try {
-            const ctx = getAudioContext()
-            if (!ctx) return
-            const now = ctx.currentTime
-
-            // 1. Fibrous friction noise burst (jute fibers sliding under tension)
-            const noise = ctx.createBufferSource()
-            noise.buffer = getNoiseBuffer(ctx)
-
-            const noiseFilter = ctx.createBiquadFilter()
-            noiseFilter.type = 'bandpass'
-            const centerFreq = 480 + Math.min(550, tension * 300)
-            noiseFilter.frequency.setValueAtTime(centerFreq, now)
-            noiseFilter.Q.setValueAtTime(3.8, now)
-
-            const noiseGain = ctx.createGain()
-            const noiseVol = 0.05 + Math.min(0.07, tension * 0.04)
-            noiseGain.gain.setValueAtTime(noiseVol, now)
-            noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.065)
-
-            noise.connect(noiseFilter)
-            noiseFilter.connect(noiseGain)
-            noiseGain.connect(ctx.destination)
-
-            noise.start(now)
-            noise.stop(now + 0.075)
-
-            // 2. Low-frequency cord strain resonance (taut rope body groan)
-            const osc = ctx.createOscillator()
-            const oscGain = ctx.createGain()
-            const oscFilter = ctx.createBiquadFilter()
-
-            osc.type = 'sawtooth'
-            const strainPitch = 135 + Math.min(90, tension * 50)
-            osc.frequency.setValueAtTime(strainPitch, now)
-            osc.frequency.linearRampToValueAtTime(strainPitch * 1.12, now + 0.05)
-
-            oscFilter.type = 'lowpass'
-            oscFilter.frequency.setValueAtTime(380, now)
-
-            oscGain.gain.setValueAtTime(0.035, now)
-            oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.055)
-
-            osc.connect(oscFilter)
-            oscFilter.connect(oscGain)
-            oscGain.connect(ctx.destination)
-
-            osc.start(now)
-            osc.stop(now + 0.065)
-        } catch {
-            // Audio policy fallback
-        }
-    }
-
-    // Authentic taut cord snap & whip recoil on release
-    const playRopeReleaseSound = (intensity = 1) => {
-        try {
-            const ctx = getAudioContext()
-            if (!ctx) return
-            const now = ctx.currentTime
-
-            // 1. Taut cord whip snap
-            const noise = ctx.createBufferSource()
-            noise.buffer = getNoiseBuffer(ctx)
-
-            const snapFilter = ctx.createBiquadFilter()
-            snapFilter.type = 'bandpass'
-            snapFilter.frequency.setValueAtTime(1050, now)
-            snapFilter.frequency.exponentialRampToValueAtTime(220, now + 0.16)
-            snapFilter.Q.setValueAtTime(2.2, now)
-
-            const snapGain = ctx.createGain()
-            snapGain.gain.setValueAtTime(0.13 * Math.min(1.4, intensity), now)
-            snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.16)
-
-            noise.connect(snapFilter)
-            snapFilter.connect(snapGain)
-            snapGain.connect(ctx.destination)
-
-            noise.start(now)
-            noise.stop(now + 0.17)
-
-            // 2. Low-end cord tension thud
-            const osc = ctx.createOscillator()
-            const oscGain = ctx.createGain()
-
-            osc.type = 'triangle'
-            const baseFreq = 130 + Math.min(70, intensity * 35)
-            osc.frequency.setValueAtTime(baseFreq, now)
-            osc.frequency.exponentialRampToValueAtTime(45, now + 0.2)
-
-            oscGain.gain.setValueAtTime(0.1 * Math.min(1.4, intensity), now)
-            oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.2)
-
-            osc.connect(oscGain)
-            oscGain.connect(ctx.destination)
-
-            osc.start(now)
-            osc.stop(now + 0.21)
-        } catch {
-            // Audio policy fallback
-        }
-    }
 
     const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
         if (e.button !== 0 && e.pointerType === 'mouse') return
@@ -172,6 +44,7 @@ export function NimbuMirchi() {
 
         isDraggingRef.current = true
         setIsPulling(true)
+        startLoopRef.current?.()
 
         // Exact invariant top anchor pivot coordinates where rope hangs from the navbar
         const parent = wrap.parentElement || wrap
@@ -196,9 +69,6 @@ export function NimbuMirchi() {
 
         physicsRef.current.targetAngle = clampedAngle
         physicsRef.current.targetExtraY = extraY
-        physicsRef.current.lastPluckY = extraY
-
-        playRopeStretchSound(0.2)
     }
 
     const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -220,21 +90,12 @@ export function NimbuMirchi() {
 
         physicsRef.current.targetAngle = clampedAngle
         physicsRef.current.targetExtraY = extraY
-
-        // Play subtle acoustic tension clicks as user stretches further
-        if (Math.abs(extraY - physicsRef.current.lastPluckY) > 8) {
-            playRopeStretchSound(extraY / 35)
-            physicsRef.current.lastPluckY = extraY
-        }
     }
 
     const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
         if (!isDraggingRef.current) return
         isDraggingRef.current = false
         setIsPulling(false)
-
-        const totalEnergy = Math.hypot(physicsRef.current.angle / 30, physicsRef.current.extraY / 20)
-        playRopeReleaseSound(Math.min(2, Math.max(0.5, totalEnergy)))
 
         if (wrapRef.current && wrapRef.current.hasPointerCapture(e.pointerId)) {
             try {
@@ -247,8 +108,23 @@ export function NimbuMirchi() {
 
     // Unified self-sustaining limit-cycle physics loop
     useEffect(() => {
-        let animId: number
+        // Reduced motion suppresses the never-ending idle swing, but direct
+        // manipulation (pull / release settle) still responds.
+        const motionQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)')
+        let reduceMotion = !!motionQuery?.matches
+        const onMotionChange = (e: MediaQueryListEvent) => {
+            reduceMotion = e.matches
+            if (!reduceMotion) startLoop()
+        }
+        motionQuery?.addEventListener?.('change', onMotionChange)
+
+        let animId = 0
         let lastTime = performance.now()
+
+        // Last values actually written to the DOM — lets us skip redundant style
+        // writes (in the steady swing state extraY rounds to 0 and never moves).
+        let lastAngle = Infinity
+        let lastExtraY = Infinity
 
         const tick = (now: number) => {
             const dt = Math.min(0.033, Math.max(0.001, (now - lastTime) / 1000))
@@ -269,21 +145,18 @@ export function NimbuMirchi() {
                 phys.extraYVel = (phys.extraY - prevExtraY) / dt
             } else {
                 // Natural physical pendulum equation
-                const omega0 = 4.2
-                const omega0Sq = omega0 * omega0
-
-                const rad = (phys.angle * Math.PI) / 180
-                const gravityTorque = -omega0Sq * Math.sin(rad) * (180 / Math.PI)
+                const rad = phys.angle * RAD
+                const gravityTorque = -OMEGA0_SQ * Math.sin(rad) * DEG
 
                 // Current instantaneous energy amplitude (in degrees)
-                const currentAmp = Math.hypot(phys.angle, phys.angleVel / omega0)
-                const defaultAmp = 6.5
+                const currentAmp = Math.hypot(phys.angle, phys.angleVel / OMEGA0)
 
-                // When amplitude is high from a user pull, gradually dissipate excess energy.
-                // When amplitude reaches the default 6.5° speed, maintain constant steady swing in user's phase!
+                // Normally: dissipate excess energy from a pull, then pump a little
+                // back to hold a constant gentle swing. Under reduced motion: always
+                // damp, so it settles to rest.
                 let dampingFactor = 0.32
-                if (currentAmp <= defaultAmp * 1.05) {
-                    dampingFactor = 0.2 * (currentAmp / defaultAmp - 1)
+                if (!reduceMotion && currentAmp <= DEFAULT_AMP * 1.05) {
+                    dampingFactor = 0.2 * (currentAmp / DEFAULT_AMP - 1)
                 }
 
                 const airDrag = -dampingFactor * phys.angleVel
@@ -298,27 +171,50 @@ export function NimbuMirchi() {
                 phys.extraY += phys.extraYVel * dt
             }
 
-            const ropeScaleY = Math.max(0.4, (60 + phys.extraY) / 60)
+            // Rotation changes every frame during the ambient swing.
+            if (wrapRef.current && Math.abs(phys.angle - lastAngle) > 1e-3) {
+                wrapRef.current.style.transform = `rotate(${phys.angle.toFixed(3)}deg)`
+                lastAngle = phys.angle
+            }
 
-            if (wrapRef.current) {
-                wrapRef.current.style.transform = `rotate(${phys.angle}deg)`
+            // Rope stretch / payload drop only move right after a pull — once the
+            // spring settles these round to 0 and the writes stop entirely.
+            if (Math.abs(phys.extraY - lastExtraY) > 1e-3) {
+                const ropeScaleY = Math.max(0.4, (60 + phys.extraY) / 60)
+                if (ropeRef.current) {
+                    ropeRef.current.style.transform = `scale(1, ${ropeScaleY.toFixed(4)})`
+                }
+                if (payloadRef.current) {
+                    payloadRef.current.style.transform = `translateY(${phys.extraY.toFixed(3)}px)`
+                }
+                lastExtraY = phys.extraY
             }
-            if (ropeRef.current) {
-                ropeRef.current.style.transform = `scale(1, ${ropeScaleY})`
-            }
-            if (payloadRef.current) {
-                payloadRef.current.style.transform = `translateY(${phys.extraY}px)`
+
+            // Under reduced motion, stop the loop once everything is at rest.
+            // A pointer-down restarts it (see startLoopRef).
+            const atRest =
+                Math.abs(phys.angle) < 0.02 && Math.abs(phys.angleVel) < 0.02 &&
+                Math.abs(phys.extraY) < 0.02 && Math.abs(phys.extraYVel) < 0.02
+            if (reduceMotion && !dragging && atRest) {
+                animId = 0
+                return
             }
 
             animId = requestAnimationFrame(tick)
         }
 
-        animId = requestAnimationFrame(tick)
+        const startLoop = () => {
+            if (animId) return
+            lastTime = performance.now()
+            animId = requestAnimationFrame(tick)
+        }
+        startLoopRef.current = startLoop
+
+        startLoop()
         return () => {
-            cancelAnimationFrame(animId)
-            if (audioCtxRef.current) {
-                audioCtxRef.current.close().catch(() => {})
-            }
+            if (animId) cancelAnimationFrame(animId)
+            startLoopRef.current = null
+            motionQuery?.removeEventListener?.('change', onMotionChange)
         }
     }, [])
 
