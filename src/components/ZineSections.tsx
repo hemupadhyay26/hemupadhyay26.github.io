@@ -1,6 +1,7 @@
 import { experienceCards, education, emailAddress, socialLinks, resumeFile } from '../data'
 import { AnimateIcon } from './animate-ui/icons/icon'
 import { ArrowUp } from './animate-ui/icons/arrow-up'
+import { ZineGlobe } from './ZineGlobe'
 const ABOUT_TAGS = ['DevOps', 'AWS', 'ECS / EC2', 'Terraform', 'Terragrunt', 'CI/CD', 'Cost Optimization', 'Monitoring']
 
 const STACK = [
@@ -77,6 +78,13 @@ export function ZineAbout() {
           fragile, repetitive, or slow, and replace it with systems that hold up.
         </p>
 
+      </div>
+      <div className="about3-globe">
+        <ZineGlobe />
+      </div>
+      <div className="about3-caption meta">
+        <span className="dot pulse" />
+        Based in Uttarakhand, India
       </div>
     </section>
   )

@@ -56,6 +56,124 @@
   transition-delay: .24s;
 }
 
+/* Preloader / blurred glass overlay */
+html.no-scroll,
+html.no-scroll body {
+  overflow: hidden;
+}
+
+/* Freeze the site's own continuous CSS animations while the overlay is
+   up. A full-viewport backdrop-filter has to re-sample and re-blur its
+   backdrop every time anything behind it changes, so leaving the spin
+   badge / marquee / equalizer / cursor running underneath was forcing a
+   full blur recompute every frame — that's what read as glitchy,
+   sub-60fps motion. Freezing them leaves only the small logo mark
+   animating, which is cheap. */
+html.preloading .pulse,
+html.preloading .hero3 .spin,
+html.preloading .marquee,
+html.preloading .np .eq i {
+  animation-play-state: paused !important;
+}
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in oklab, var(--paper) 55%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: opacity .7s cubic-bezier(.4, 0, .2, 1);
+}
+
+.preloader.leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.preloader-logo {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1.5px solid var(--ink);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, .25);
+  transition: opacity .5s ease, transform .5s ease;
+  animation: zoom-pulse 1.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.preloader-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.preloader-logo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  animation: zoom-ring 1.8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.preloader.leaving .preloader-logo {
+  opacity: 0;
+  transform: scale(1.35);
+  animation: none;
+}
+
+.preloader.leaving .preloader-logo::after {
+  animation: none;
+}
+
+/* A single smooth breathe — zoom in, zoom out, repeat — rather than a
+   double-thump beat. Both animations only touch transform/opacity (no
+   box-shadow, no layout or paint work) so the compositor can run them
+   independently of the frozen backdrop at a steady 60fps. */
+@keyframes zoom-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes zoom-ring {
+  0% {
+    transform: scale(1);
+    opacity: .45;
+  }
+
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .preloader-logo,
+  .preloader-logo::after {
+    animation: none;
+  }
+
+  .globe3-canvas {
+    cursor: default;
+  }
+}
+
 /* Custom cursor */
 .cursor {
   position: fixed;
@@ -106,6 +224,8 @@
   font-size: 18px;
   letter-spacing: -0.01em;
   color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .chrome .brand i {
@@ -390,6 +510,13 @@
   grid-template-columns: 1fr 1fr;
   gap: 0;
   position: relative;
+  /* Contains the globe's negative z-index to this section instead of it
+     racing against the whole page's stacking order (where it'd get buried
+     under unrelated content and vanish). */
+  isolation: isolate;
+  /* The background globe bleeds past the section's height by design — crop
+     it to the section instead of spilling into neighbouring sections. */
+  overflow: hidden;
 }
 
 .about3::before {
@@ -411,6 +538,12 @@
 .about3>* {
   position: relative;
   z-index: 1;
+}
+
+/* Globe sits behind everything else in the section (below the ABOUT
+   watermark too) so it can tuck under the copy instead of covering it. */
+.about3>.about3-globe {
+  z-index: -1;
 }
 
 .about3 .left h2 {
@@ -442,6 +575,43 @@
   border-radius: 999px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}
+
+/* Anchored to the section's bottom edge with its own height pushed down by
+   half via translateY(50%) — only the top half of the circle shows, like a
+   horizon/sunrise. .about3's overflow: hidden crops the rest. */
+.about3-globe {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(640px, 82%);
+  transform: translate(-50%, 50%);
+}
+
+.globe3-canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  cursor: grab;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  touch-action: pan-y;
+}
+
+/* Sits above the globe (.about3 > * gives it z-index: 1) so it always
+   stays legible instead of riding along with the half-circle. */
+.about3-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.about3-caption .dot {
+  margin-right: 8px;
 }
 
 .about3 .right p {
@@ -1378,6 +1548,14 @@
 
   .about3 .left .tags {
     margin-bottom: 10px;
+  }
+
+  .about3-globe {
+    width: min(420px, 92%);
+  }
+
+  .about3-caption {
+    bottom: 12px;
   }
 
   .about3 .right p:first-child::first-letter {

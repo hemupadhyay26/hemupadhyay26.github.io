@@ -42,7 +42,7 @@ export function ZineHero() {
   }
 
   return (
-    <section className="hero3">
+    <section className="hero3" id="hero">
       <div className="bg" style={{ backgroundImage: `url(${heroPortrait})` }} />
       <div className="grain" />
 

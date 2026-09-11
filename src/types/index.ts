@@ -28,7 +28,6 @@ export type Education = {
 export type Track = {
   title: string
   artist: string
-  artwork: string
   src: string
 }
 

@@ -127,6 +127,15 @@ export function NimbuMirchi() {
         let lastExtraY = Infinity
 
         const tick = (now: number) => {
+            // Freeze while the preload overlay's backdrop-filter is up — this
+            // loop writes a transform every frame forever (ambient swing), which
+            // sits right behind the blur and forces it to recompute each frame.
+            if (document.documentElement.classList.contains('preloading')) {
+                lastTime = now
+                animId = requestAnimationFrame(tick)
+                return
+            }
+
             const dt = Math.min(0.033, Math.max(0.001, (now - lastTime) / 1000))
             lastTime = now
 

@@ -1,16 +1,13 @@
 import heroPortrait from '../assets/hero.webp'
 import resumeFile from '../assets/hem_upadhyay_resume.pdf'
-import projectInfuseAi from '../assets/projectInfuseAi.png'
-import projectInterviewAi from '../assets/projectInterviewAi.png'
-import projectSshCredManager from '../assets/projectSshCredManager.png'
-import projectSlackNotification from '../assets/projectSlackNotification.png'
-import projectTantrumpy from '../assets/projectTantrumpy.png'
+import projectInfuseAi from '../assets/projectInfuseAi.webp'
+import projectInterviewAi from '../assets/projectInterviewAi.webp'
+import projectSshCredManager from '../assets/projectSshCredManager.webp'
+import projectSlackNotification from '../assets/projectSlackNotification.webp'
+import projectTantrumpy from '../assets/projectTantrumpy.webp'
 import audio1 from '../assets/audio/audio1.mp3'
 import audio2 from '../assets/audio/audio2.mp3'
 import audio3 from '../assets/audio/audio3.mp3'
-import track1Cover from '../assets/audio/track1Cover.jpg'
-import track2Cover from '../assets/audio/track2Cover.jpg'
-import track3Cover from '../assets/audio/track3Cover.jpg'
 import { Github, Linkedin, MessageSquare } from 'lucide-react'
 import type { Project, Experience, Education, Track, SocialLink } from '../types'
 
@@ -118,19 +115,16 @@ export const tracks: Track[] = [
   {
     title: 'Audio 1',
     artist: 'No copyright music',
-    artwork: track1Cover,
     src: audio1,
   },
   {
     title: 'Audio 2',
     artist: 'No copyright music',
-    artwork: track2Cover,
     src: audio2,
   },
   {
     title: 'Audio 3',
     artist: 'No copyright music',
-    artwork: track3Cover,
     src: audio3,
   },
 ]

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { ZinePreloader } from './components/ZinePreloader'
 import { ZineHero } from './components/ZineHero'
 import { ZineWorks } from './components/ZineWorks'
 import { ZineTerminal } from './components/ZineTerminal'
@@ -16,10 +17,16 @@ export default function App() {
     const onMove = (e: MouseEvent) => { tx = e.clientX; ty = e.clientY }
     window.addEventListener('mousemove', onMove)
     const tick = () => {
-      cx += (tx - cx) * 0.22
-      cy += (ty - cy) * 0.22
-      if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`
+      // Skip while the preload overlay's backdrop-filter is active — a
+      // fixed cursor dot moving underneath it forces a full blur
+      // recompute every frame for no visible benefit (it's hidden
+      // under the glass anyway).
+      if (!document.documentElement.classList.contains('preloading')) {
+        cx += (tx - cx) * 0.22
+        cy += (ty - cy) * 0.22
+        if (cursorRef.current) {
+          cursorRef.current.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`
+        }
       }
       raf = requestAnimationFrame(tick)
     }
@@ -60,10 +67,11 @@ export default function App() {
 
   return (
     <>
+      <ZinePreloader />
       <div className="cursor" ref={cursorRef} />
 
       <header className={`chrome${isScrolled ? ' scrolled' : ''}`}>
-        <div className="brand">Hem <i>Upadhyay</i></div>
+        <a className="brand" href="#hero">Hem <i>Upadhyay</i></a>
         <nav className="navlinks">
           <a href="#work">Work</a>
           <a href="#terminal">Terminal</a>
