@@ -218,6 +218,12 @@ html.preloading .np .eq i {
   color: var(--ink);
 }
 
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .chrome .brand {
   font-family: var(--serif);
   font-weight: 500;
@@ -231,6 +237,26 @@ html.preloading .np .eq i {
 .chrome .brand i {
   font-style: italic;
   opacity: .72;
+}
+
+.status-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: inherit;
+  opacity: .8;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: color-mix(in oklab, currentColor 12%, transparent);
+  white-space: nowrap;
+}
+
+.status-chip .dot {
+  margin-right: 0;
 }
 
 .navlinks {
@@ -274,6 +300,33 @@ html.preloading .np .eq i {
 .navlinks a:hover::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+.nav-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.resume-btn {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: inherit;
+  border: 1px solid currentColor;
+  opacity: .8;
+  padding: 6px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: opacity .25s, background .25s, color .25s, border-color .25s;
+}
+
+.resume-btn:hover {
+  opacity: 1;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
 }
 
 /* Stage */
@@ -333,29 +386,6 @@ html.preloading .np .eq i {
 .hero3>*:not(.bg):not(.grain) {
   position: relative;
   z-index: 2;
-}
-
-.hero3 .topline {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: rgba(245, 239, 232, .72);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.hero3 .topline .dot.pulse {
-  background: var(--accent);
-  box-shadow: 0 0 0 4px rgba(255, 60, 40, .25);
-}
-
-.hero3 .issue {
-  border: 1px solid rgba(245, 239, 232, .4);
-  padding: 4px 10px;
-  border-radius: 4px;
-  color: rgba(245, 239, 232, .9);
 }
 
 .hero3 .title-stack {
@@ -776,6 +806,7 @@ html.preloading .np .eq i {
 .foot3 a.to-top {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
 }
 
@@ -1041,6 +1072,21 @@ html.preloading .np .eq i {
   padding: 120px 32px;
   border-top: 2px solid var(--ink);
   background: var(--paper);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.term-sec-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.term-sec>*:not(.term-sec-bg) {
+  position: relative;
+  z-index: 1;
 }
 
 .term-sec .term-head {
@@ -1304,6 +1350,20 @@ html.preloading .np .eq i {
   border-top: 2px solid var(--ink);
   text-align: center;
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.cta3-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cta3>*:not(.cta3-bg) {
+  position: relative;
+  z-index: 1;
 }
 
 .cta3 .eyebrow {
@@ -1470,6 +1530,21 @@ html.preloading .np .eq i {
     font-size: 16px;
   }
 
+  .brand-group {
+    gap: 8px;
+  }
+
+  /* Keep the header from crowding on tiny screens — the status is still
+     visible as a plain dot, just without the label text. */
+  .status-chip {
+    padding: 5px;
+    background: none;
+  }
+
+  .status-chip .chip-label {
+    display: none;
+  }
+
   .navlinks {
     gap: 16px;
     font-size: 10px;
@@ -1480,6 +1555,16 @@ html.preloading .np .eq i {
     display: none;
   }
 
+  .nav-group {
+    gap: 12px;
+  }
+
+  .resume-btn {
+    font-size: 9px;
+    padding: 5px 10px;
+    letter-spacing: 0.1em;
+  }
+
   /* Hero */
   .hero3 {
     padding: 56px 16px 32px;
@@ -1488,12 +1573,6 @@ html.preloading .np .eq i {
 
   .hero3 .title-stack {
     margin: 32px 0;
-  }
-
-  .hero3 .topline {
-    flex-wrap: wrap;
-    gap: 8px;
-    font-size: 10px;
   }
 
   .hero3 .bottomline {

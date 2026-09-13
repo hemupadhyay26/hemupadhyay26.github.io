@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { heroPortrait, isAvailableForWork, tracks, resumeFile } from '../data'
+import { heroPortrait, tracks } from '../data'
 import { AnimateIcon } from './animate-ui/icons/icon'
 import { Play } from './animate-ui/icons/play'
 import { Pause } from './animate-ui/icons/pause'
@@ -45,17 +45,6 @@ export function ZineHero() {
     <section className="hero3" id="hero">
       <div className="bg" style={{ backgroundImage: `url(${heroPortrait})` }} />
       <div className="grain" />
-
-      <div className="topline">
-        <div>Issue IV · 2026</div>
-        <a href={resumeFile} target="_blank" rel="noopener noreferrer">
-          <div className="issue">Preview Resume</div>
-        </a>
-        <div>
-          <span className="dot pulse" />
-          {isAvailableForWork ? 'Open to work' : 'Currently employed'}
-        </div>
-      </div>
 
       <div className="title-stack">
         <h1>

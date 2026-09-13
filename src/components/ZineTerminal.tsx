@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { emailAddress } from '../data'
 import { resumeFile } from '../data'
+import WebThreads from './reactbits/WebThreads'
 
 type TermLine = {
   type: 'cmd' | 'out'
@@ -232,6 +233,23 @@ export function ZineTerminal() {
 
   return (
     <section className="term-sec" id="terminal">
+      <div className="term-sec-bg" aria-hidden="true">
+        <WebThreads
+          color1="#1f0f0f"
+          color2="#ff3c28"
+          color3="#f5efe8"
+          threadCount={5}
+          frequency={4}
+          spread={0.14}
+          thickness={1.2}
+          brightness={0.65}
+          opacity={0.45}
+          fanMode="center"
+          grain={false}
+          mouseInteraction={false}
+        />
+      </div>
+
       <div className="term-head">
         <h2>Talk to the <em>shell.</em></h2>
         <div className="meta">try `help`</div>

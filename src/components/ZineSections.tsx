@@ -2,6 +2,7 @@ import { experienceCards, education, emailAddress, socialLinks, resumeFile } fro
 import { AnimateIcon } from './animate-ui/icons/icon'
 import { ArrowUp } from './animate-ui/icons/arrow-up'
 import { ZineGlobe } from './ZineGlobe'
+import Scanner from './reactbits/Scanner'
 const ABOUT_TAGS = ['DevOps', 'AWS', 'ECS / EC2', 'Terraform', 'Terragrunt', 'CI/CD', 'Cost Optimization', 'Monitoring']
 
 const STACK = [
@@ -196,6 +197,20 @@ export function ZineContact() {
   return (
     <>
       <section className="cta3" id="contact">
+        <div className="cta3-bg" aria-hidden="true">
+          <Scanner
+            color1="#f5efe8"
+            color2="#1f0f0f"
+            color3="#ff3c28"
+            speed={0.4}
+            sweepSpeed={0.2}
+            scale={1.8}
+            glow={0.18}
+            opacity={0.45}
+            grain={false}
+            scanline={false}
+          />
+        </div>
         <div className="eyebrow">§ 05 · Correspondence</div>
         <h2>Say <em>hi.</em></h2>
         <a className="mail" href={`mailto:${emailAddress}`}>{emailAddress}</a>
@@ -217,7 +232,7 @@ export function ZineContact() {
       </section>
 
       <div className="foot3">
-        <div>© MMXXVI · Hem Upadhyay</div>
+        <div>© Hem Upadhyay</div>
         <AnimateIcon asChild animateOnHover>
           <a
             className="to-top"

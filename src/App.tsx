@@ -5,6 +5,7 @@ import { ZineWorks } from './components/ZineWorks'
 import { ZineTerminal } from './components/ZineTerminal'
 import { NimbuMirchi } from './components/NimbuMirchi'
 import { ZineMarquee, ZineAbout, ZineNow, ZineStack, ZineExp, ZineContact } from './components/ZineSections'
+import { resumeFile, isAvailableForWork } from './data'
 import './App.css'
 
 export default function App() {
@@ -71,12 +72,24 @@ export default function App() {
       <div className="cursor" ref={cursorRef} />
 
       <header className={`chrome${isScrolled ? ' scrolled' : ''}`}>
-        <a className="brand" href="#hero">Hem <i>Upadhyay</i></a>
-        <nav className="navlinks">
-          <a href="#work">Work</a>
-          <a href="#terminal">Terminal</a>
-          <a href="#contact">Contact</a>
-        </nav>
+        <div className="brand-group">
+          <a className="brand" href="#hero">Hem <i>Upadhyay</i></a>
+          <span className="status-chip">
+            <span className="dot pulse" />
+            <span className="chip-label">{isAvailableForWork ? 'Open to work' : 'Currently employed'}</span>
+          </span>
+        </div>
+
+        <div className="nav-group">
+          <nav className="navlinks">
+            <a href="#work">Work</a>
+            <a href="#terminal">Terminal</a>
+            <a href="#contact">Contact</a>
+          </nav>
+          <a className="resume-btn" href={resumeFile} target="_blank" rel="noopener noreferrer">
+            Resume
+          </a>
+        </div>
 
         <NimbuMirchi />
       </header>
