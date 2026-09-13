@@ -1,9 +1,20 @@
+import { useEffect, useRef } from 'react'
 import { experienceCards, education, emailAddress, socialLinks, resumeFile } from '../data'
 import { AnimateIcon } from './animate-ui/icons/icon'
 import { ArrowUp } from './animate-ui/icons/arrow-up'
 import { ZineGlobe } from './ZineGlobe'
 import Scanner from './reactbits/Scanner'
 const ABOUT_TAGS = ['DevOps', 'AWS', 'ECS / EC2', 'Terraform', 'Terragrunt', 'CI/CD', 'Cost Optimization', 'Monitoring']
+
+// How long (seconds) the marquee takes to cross one loop-width at rest — matches the pace of
+// the CSS animation this replaced.
+const MARQUEE_LOOP_SECONDS = 40
+// A drag's px/sec velocity is added straight on top of the resting speed, capped here so a wild
+// flick doesn't send the text flying off-screen.
+const MARQUEE_MAX_BOOST = 1400
+// Exponential decay rate (per second) applied to that boost once the drag ends, so it eases
+// back to resting speed over roughly a second instead of snapping back.
+const MARQUEE_BOOST_DECAY_RATE = 2.2
 
 const STACK = [
   {
@@ -44,11 +55,116 @@ export function ZineMarquee() {
     'Automation',
   ]
   const text = items.map(i => `${i} <span>◇</span>`).join(' ')
+
+  const trackRef = useRef<HTMLDivElement>(null)
+  const firstItemRef = useRef<HTMLDivElement>(null)
+
+  // Mutable drag/animation state that shouldn't trigger re-renders — the loop below drives the
+  // DOM directly via a ref instead.
+  const stateRef = useRef({
+    offset: 0,
+    loopWidth: 0,
+    baseSpeed: 0,
+    boost: 0,
+    dragging: false,
+    lastX: 0,
+    lastT: 0,
+  })
+
+  useEffect(() => {
+    const track = trackRef.current
+    const firstItem = firstItemRef.current
+    if (!track || !firstItem) return
+
+    const measure = () => {
+      const gap = parseFloat(getComputedStyle(track).columnGap || '0')
+      const loopWidth = firstItem.offsetWidth + gap
+      stateRef.current.loopWidth = loopWidth
+      stateRef.current.baseSpeed = loopWidth / MARQUEE_LOOP_SECONDS
+    }
+    measure()
+
+    const ro = new ResizeObserver(measure)
+    ro.observe(firstItem)
+
+    let raf = 0
+    let last = performance.now()
+
+    const tick = (now: number) => {
+      const dt = Math.min((now - last) / 1000, 0.05)
+      last = now
+
+      // Skip while the preload overlay's backdrop-filter is active — see the matching note
+      // in App.tsx's cursor loop for why anything moving underneath it is expensive.
+      if (document.documentElement.classList.contains('preloading')) {
+        raf = requestAnimationFrame(tick)
+        return
+      }
+
+      const s = stateRef.current
+
+      if (!s.dragging && s.boost > 0.5) {
+        s.boost *= Math.exp(-MARQUEE_BOOST_DECAY_RATE * dt)
+      } else if (!s.dragging) {
+        s.boost = 0
+      }
+
+      s.offset -= (s.baseSpeed + s.boost) * dt
+      if (s.loopWidth > 0 && s.offset <= -s.loopWidth) {
+        s.offset += s.loopWidth
+      }
+      track.style.transform = `translateX(${s.offset}px)`
+
+      raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+
+    return () => {
+      cancelAnimationFrame(raf)
+      ro.disconnect()
+    }
+  }, [])
+
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    const s = stateRef.current
+    s.dragging = true
+    s.lastX = e.clientX
+    s.lastT = performance.now()
+    e.currentTarget.setPointerCapture(e.pointerId)
+  }
+
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const s = stateRef.current
+    if (!s.dragging) return
+    const now = performance.now()
+    const dt = Math.max((now - s.lastT) / 1000, 1 / 120)
+    const velocity = Math.abs(e.clientX - s.lastX) / dt
+    s.lastX = e.clientX
+    s.lastT = now
+    s.boost = Math.min(velocity, MARQUEE_MAX_BOOST)
+  }
+
+  const endDrag = () => {
+    stateRef.current.dragging = false
+  }
+
   return (
-    <div className="marq3" aria-hidden="true">
-      <div className="marquee">
+    <div
+      className="marq3"
+      aria-hidden="true"
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={endDrag}
+      onPointerCancel={endDrag}
+    >
+      <div className="marquee" ref={trackRef}>
         {[0, 1].map(k => (
-          <div key={k} className="m" dangerouslySetInnerHTML={{ __html: text }} />
+          <div
+            key={k}
+            className="m"
+            ref={k === 0 ? firstItemRef : undefined}
+            dangerouslySetInnerHTML={{ __html: text }}
+          />
         ))}
       </div>
     </div>

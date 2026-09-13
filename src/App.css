@@ -68,10 +68,10 @@ html.no-scroll body {
    badge / marquee / equalizer / cursor running underneath was forcing a
    full blur recompute every frame — that's what read as glitchy,
    sub-60fps motion. Freezing them leaves only the small logo mark
-   animating, which is cheap. */
+   animating, which is cheap. (The marquee is driven by rAF now — its
+   own loop checks html.preloading directly rather than pausing here.) */
 html.preloading .pulse,
 html.preloading .hero3 .spin,
-html.preloading .marquee,
 html.preloading .np .eq i {
   animation-play-state: paused !important;
 }
@@ -501,6 +501,12 @@ html.preloading .np .eq i {
   overflow: hidden;
   border-top: 2px solid var(--ink);
   border-bottom: 2px solid var(--ink);
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.marq3:active {
+  cursor: grabbing;
 }
 
 .marq3 .m {
@@ -524,13 +530,7 @@ html.preloading .np .eq i {
   display: flex;
   gap: 48px;
   white-space: nowrap;
-  animation: marq 40s linear infinite;
-}
-
-@keyframes marq {
-  to {
-    transform: translateX(-50%);
-  }
+  will-change: transform;
 }
 
 /* About */
