@@ -4,6 +4,7 @@ import { AnimateIcon } from './animate-ui/icons/icon'
 import { ArrowUp } from './animate-ui/icons/arrow-up'
 import { ZineGlobe } from './ZineGlobe'
 import Scanner from './reactbits/Scanner'
+import { PageMascot } from './PageMascot'
 const ABOUT_TAGS = ['DevOps', 'AWS', 'ECS / EC2', 'Terraform', 'Terragrunt', 'CI/CD', 'Cost Optimization', 'Monitoring']
 
 // How long (seconds) the marquee takes to cross one loop-width at rest — matches the pace of
@@ -328,7 +329,7 @@ export function ZineContact() {
           />
         </div>
         <div className="eyebrow">§ 05 · Correspondence</div>
-        <h2>Say <em>hi.</em></h2>
+        <h2><span className="say-hi-wrap">Say <em>hi.</em><span className="cta-mascot"><PageMascot /></span></span></h2>
         <a className="mail" href={`mailto:${emailAddress}`}>{emailAddress}</a>
         <div className="slinks">
           {links.map((link, i) => (

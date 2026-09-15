@@ -1,0 +1,27 @@
+.page-mascot {
+  flex-shrink: 0;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, .4));
+  -webkit-mask-image: linear-gradient(to bottom, black 78%, transparent 96%);
+  mask-image: linear-gradient(to bottom, black 78%, transparent 96%);
+}
+
+@media (max-width: 900px) {
+  .page-mascot {
+    width: 110px !important;
+    height: 110px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-mascot {
+    width: 76px !important;
+    height: 76px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .page-mascot {
+    width: 56px !important;
+    height: 56px !important;
+  }
+}
