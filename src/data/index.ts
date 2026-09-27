@@ -4,7 +4,7 @@ import projectInfuseAi from '../assets/projectInfuseAi.webp'
 import projectInterviewAi from '../assets/projectInterviewAi.webp'
 import projectSshCredManager from '../assets/projectSshCredManager.webp'
 import projectSlackNotification from '../assets/projectSlackNotification.webp'
-import projectTantrumpy from '../assets/projectTantrumpy.webp'
+import projectSwingly from '../assets/projectSwingly.webp'
 import audio1 from '../assets/audio/audio1.mp3'
 import audio2 from '../assets/audio/audio2.mp3'
 import audio3 from '../assets/audio/audio3.mp3'
@@ -47,11 +47,11 @@ export const myWork: Project[] = [
     url: 'https://github.com/hemupadhyay26/slack-github-action-template',
   },
   {
-    title: 'Tantrumpy',
-    description: 'A Python package that captures exit signals and prints a nice message when the program terminates.',
-    cover: 'tantrumpy',
-    image: projectTantrumpy,
-    url: 'https://github.com/hemupadhyay26/tantrumpy',
+    title: 'Swingly',
+    description: 'A tiny character that hangs off the corner of a webpage and swings like a pendulum, with an AI generator for new characters.',
+    cover: 'swingly',
+    image: projectSwingly,
+    url: 'https://github.com/hemupadhyay26/swingly',
   },
 ]
 

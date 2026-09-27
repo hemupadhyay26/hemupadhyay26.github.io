@@ -36,7 +36,7 @@ const COMMANDS = [
   {
     command: 'projects',
     description: 'list projects',
-    output: ['infuse-ai/  ssh-cred-manager/  slack-notifs/  tantrumpy/'],
+    output: ['infuse-ai/  ssh-cred-manager/  slack-notifs/  swingly/'],
   },
   {
     command: 'skills',
