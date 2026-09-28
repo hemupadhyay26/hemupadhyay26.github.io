@@ -3,7 +3,7 @@ import { ZinePreloader } from './components/ZinePreloader'
 import { ZineHero } from './components/ZineHero'
 import { ZineWorks } from './components/ZineWorks'
 import { ZineTerminal } from './components/ZineTerminal'
-import { NimbuMirchi } from './components/NimbuMirchi'
+import { HangingCharacterWidget } from 'swingly/react'
 import { ZineMarquee, ZineAbout, ZineNow, ZineStack, ZineExp, ZineContact } from './components/ZineSections'
 import { resumeFile, isAvailableForWork } from './data'
 import './App.css'
@@ -11,6 +11,7 @@ import './App.css'
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false)
   const cursorRef = useRef<HTMLDivElement>(null)
+  const [charmAnchor, setCharmAnchor] = useState<HTMLDivElement | null>(null)
 
   // Smooth cursor
   useEffect(() => {
@@ -91,7 +92,14 @@ export default function App() {
           </a>
         </div>
 
-        <NimbuMirchi />
+        {/* Zero-height strip along the navbar's bottom edge — the charm hangs from here */}
+        <div className="charm-anchor" ref={setCharmAnchor} />
+        <HangingCharacterWidget
+          assets="/characters/nimbu-mirchi/manifest.json"
+          corner="top-right"
+          threadLength={6}
+          mountTarget={charmAnchor}
+        />
       </header>
 
       <main className="stage">

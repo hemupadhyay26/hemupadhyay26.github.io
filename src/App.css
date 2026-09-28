@@ -211,6 +211,19 @@ html.preloading .np .eq i {
   color: #f5efe8;
 }
 
+.charm-anchor {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.charm-anchor .swingly-root {
+  pointer-events: auto;
+}
+
 .chrome.scrolled {
   background: color-mix(in oklab, var(--paper) 85%, transparent);
   backdrop-filter: blur(20px) saturate(150%);
