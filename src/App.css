@@ -1963,3 +1963,25 @@ html.preloading .hero-smoke i { animation-play-state: paused; }
 .hero3 .np-hero .np-btn:hover { background: #ff594a; }
 .hero3 .np-hero .hero-music-next .np-btn { color: #f5efe8; background: transparent; }
 .hero3 .np-hero .hero-music-next .np-btn:hover { color: #f43c2c; background: transparent; }
+
+/* Give the display name room for serif ascenders and italic overhang. */
+.hero3 { min-height: max(900px, 100svh); }
+.hero3 h1 {
+  font-size: clamp(72px, 11.4vw, 200px);
+  line-height: 1.08;
+  margin-bottom: 30px;
+  padding-right: .12em;
+}
+.hero-intro { top: 110px; }
+@media (max-width: 900px) and (min-width: 641px) {
+  .hero3 { padding-bottom: 36px; }
+  .hero3 .np-hero { position: relative; inset: auto; align-self: flex-end; margin-top: 28px; }
+}
+@media (max-width: 640px) {
+  .hero3 { padding-top: 340px; }
+  .hero3 h1 { font-size: clamp(56px, 15.4vw, 96px); line-height: 1.05; margin-bottom: 28px; }
+  .hero3 h1 > .hero-name-word + .hero-name-word { margin-top: 6px; }
+  .hero-intro { top: auto; margin-bottom: 38px; }
+  .hero3 .np-hero { position: relative; inset: auto; margin-top: 28px; }
+  .hero3 { padding-bottom: 28px; }
+}
