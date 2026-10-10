@@ -9,6 +9,7 @@ import { resumeFile, isAvailableForWork } from './data'
 import './App.css'
 
 export default function App() {
+  const [siteReady, setSiteReady] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const cursorRef = useRef<HTMLDivElement>(null)
   const [charmAnchor, setCharmAnchor] = useState<HTMLDivElement | null>(null)
@@ -69,7 +70,7 @@ export default function App() {
 
   return (
     <>
-      <ZinePreloader />
+      <ZinePreloader onReady={setSiteReady} />
       <div className="cursor" ref={cursorRef} />
 
       <header className={`chrome${isScrolled ? ' scrolled' : ''}`}>
@@ -104,7 +105,7 @@ export default function App() {
 
       <main className="stage">
         <div className="v3">
-          <ZineHero />
+          <ZineHero ready={siteReady} />
           <ZineMarquee />
           <ZineAbout />
           <ZineWorks />
