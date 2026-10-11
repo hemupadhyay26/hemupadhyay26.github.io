@@ -5,7 +5,7 @@ import { ArrowUp } from './animate-ui/icons/arrow-up'
 import { ZineGlobe } from './ZineGlobe'
 import Scanner from './reactbits/Scanner'
 import { PageMascot } from './PageMascot'
-const ABOUT_TAGS = ['DevOps', 'AWS', 'ECS / EC2', 'Terraform', 'Terragrunt', 'CI/CD', 'Cost Optimization', 'Monitoring']
+const ABOUT_TAGS = ['DevOps', 'AWS', 'ECS / EC2', 'Terraform', 'Sentry', 'CI/CD', 'Cost Optimization', 'Monitoring']
 
 // How long (seconds) the marquee takes to cross one loop-width at rest — matches the pace of
 // the CSS animation this replaced.
