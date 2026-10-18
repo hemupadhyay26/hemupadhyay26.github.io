@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ZinePreloader } from './components/ZinePreloader'
 import { ZineHero } from './components/ZineHero'
 import { ZineWorks } from './components/ZineWorks'
@@ -11,42 +11,7 @@ import './App.css'
 export default function App() {
   const [siteReady, setSiteReady] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const cursorRef = useRef<HTMLDivElement>(null)
   const [charmAnchor, setCharmAnchor] = useState<HTMLDivElement | null>(null)
-
-  // Smooth cursor
-  useEffect(() => {
-    let cx = 0, cy = 0, tx = 0, ty = 0, raf: number
-    const onMove = (e: MouseEvent) => { tx = e.clientX; ty = e.clientY }
-    window.addEventListener('mousemove', onMove)
-    const tick = () => {
-      // Skip while the preload overlay's backdrop-filter is active — a
-      // fixed cursor dot moving underneath it forces a full blur
-      // recompute every frame for no visible benefit (it's hidden
-      // under the glass anyway).
-      if (!document.documentElement.classList.contains('preloading')) {
-        cx += (tx - cx) * 0.22
-        cy += (ty - cy) * 0.22
-        if (cursorRef.current) {
-          cursorRef.current.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`
-        }
-      }
-      raf = requestAnimationFrame(tick)
-    }
-    raf = requestAnimationFrame(tick)
-    return () => { window.removeEventListener('mousemove', onMove); cancelAnimationFrame(raf) }
-  }, [])
-
-  // Cursor enlarge on interactive elements
-  useEffect(() => {
-    const onOver = (e: MouseEvent) => {
-      const el = cursorRef.current
-      if (!el) return
-      el.classList.toggle('big', !!(e.target as Element).closest('a, button, .card, .it, .row'))
-    }
-    document.addEventListener('mouseover', onOver)
-    return () => document.removeEventListener('mouseover', onOver)
-  }, [])
 
   // Chrome scroll state
   useEffect(() => {
@@ -71,7 +36,7 @@ export default function App() {
   return (
     <>
       <ZinePreloader onReady={setSiteReady} />
-      <div className="cursor" ref={cursorRef} />
+      <a className="skip-link" href="#main">Skip to content</a>
 
       <header className={`chrome${isScrolled ? ' scrolled' : ''}`}>
         <div className="brand-group">
@@ -83,7 +48,7 @@ export default function App() {
         </div>
 
         <div className="nav-group">
-          <nav className="navlinks">
+          <nav className="navlinks" aria-label="Main navigation">
             <a href="#work">Work</a>
             <a href="#terminal">Terminal</a>
             <a href="#contact">Contact</a>
@@ -103,7 +68,7 @@ export default function App() {
         />
       </header>
 
-      <main className="stage">
+      <main className="stage" id="main" tabIndex={-1}>
         <div className="v3">
           <ZineHero ready={siteReady} />
           <ZineMarquee />

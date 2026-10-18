@@ -1,0 +1,47 @@
+.image-reveal {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  --reveal-radius: 0px;
+  --reveal-inner: 0px;
+  --reveal-x: 50%;
+  --reveal-y: 35%;
+  --reveal-visible: 0;
+}
+.image-reveal-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+.image-reveal-base { filter: contrast(1.06) saturate(.9); }
+.image-reveal-overlay {
+  opacity: var(--reveal-visible);
+  mask-image: radial-gradient(circle at var(--reveal-x) var(--reveal-y), #000 var(--reveal-inner), transparent var(--reveal-radius));
+  -webkit-mask-image: radial-gradient(circle at var(--reveal-x) var(--reveal-y), #000 var(--reveal-inner), transparent var(--reveal-radius));
+}
+.image-reveal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #0d0909 0%, transparent 34%, transparent 66%, #0d0909 100%),
+    linear-gradient(180deg, rgba(13,9,9,.2), transparent 38%, rgba(13,9,9,.35) 65%, #0d0909);
+}
+.image-reveal-ring {
+  position: absolute;
+  left: var(--reveal-x);
+  top: var(--reveal-y);
+  width: calc(var(--reveal-radius) * 2);
+  height: calc(var(--reveal-radius) * 2);
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(150,225,245,.22);
+  border-radius: 50%;
+  opacity: var(--reveal-visible);
+}
+.image-reveal-preload { display: none; }
+@media (max-width: 640px) {
+  .image-reveal-layer { background-size: auto 460px; }
+  .image-reveal::after { background: linear-gradient(180deg, rgba(13,9,9,.08), transparent 24%, #0d0909 480px); }
+}

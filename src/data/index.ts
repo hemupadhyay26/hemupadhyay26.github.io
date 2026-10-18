@@ -2,7 +2,7 @@ import heroPortrait from '../assets/hero.webp'
 import resumeFile from '../assets/hem_upadhyay_resume.pdf'
 import projectInfuseAi from '../assets/projectInfuseAi.webp'
 import projectInterviewAi from '../assets/projectInterviewAi.webp'
-import projectSshCredManager from '../assets/projectSshCredManager.webp'
+import projectSshCredManager from '../assets/project-ssh-v2.webp'
 import projectSlackNotification from '../assets/projectSlackNotification.webp'
 import projectSwingly from '../assets/projectSwingly.webp'
 import audio1 from '../assets/audio/audio1.mp3'
@@ -19,18 +19,18 @@ export const emailAddress = 'hemupadhyay234@gmail.com'
 
 export const myWork: Project[] = [
   {
-    title: 'Infuse AI',
-    description: 'A RAG based AI agent that help you get answers based on your documents.',
-    cover: 'infuse ai',
-    image: projectInfuseAi,
-    url: 'https://github.com/hemupadhyay26/infuse-ai',
-  },
-  {
     title: 'SSH Credential Manager',
     description: 'A tool that helps you manage your SSH credentials.',
     cover: 'ssh credential manager',
     image: projectSshCredManager,
     url: 'https://github.com/hemupadhyay26/ssh-cred-manager-python',
+  },
+  {
+    title: 'Swingly',
+    description: 'A tiny character that hangs off the corner of a webpage and swings like a pendulum, with an AI generator for new characters.',
+    cover: 'swingly',
+    image: projectSwingly,
+    url: 'https://github.com/hemupadhyay26/swingly',
   },
   {
     title: 'Interview AI',
@@ -47,11 +47,11 @@ export const myWork: Project[] = [
     url: 'https://github.com/hemupadhyay26/slack-github-action-template',
   },
   {
-    title: 'Swingly',
-    description: 'A tiny character that hangs off the corner of a webpage and swings like a pendulum, with an AI generator for new characters.',
-    cover: 'swingly',
-    image: projectSwingly,
-    url: 'https://github.com/hemupadhyay26/swingly',
+    title: 'Infuse AI',
+    description: 'A RAG based AI agent that help you get answers based on your documents.',
+    cover: 'infuse ai',
+    image: projectInfuseAi,
+    url: 'https://github.com/hemupadhyay26/infuse-ai',
   },
 ]
 

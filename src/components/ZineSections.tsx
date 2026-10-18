@@ -77,6 +77,7 @@ export function ZineMarquee() {
     const firstItem = firstItemRef.current
     if (!track || !firstItem) return
 
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     const measure = () => {
       const gap = parseFloat(getComputedStyle(track).columnGap || '0')
       const loopWidth = firstItem.offsetWidth + gap
@@ -97,23 +98,24 @@ export function ZineMarquee() {
 
       // Skip while the preload overlay's backdrop-filter is active — see the matching note
       // in App.tsx's cursor loop for why anything moving underneath it is expensive.
-      if (document.documentElement.classList.contains('preloading')) {
+      if (document.documentElement.classList.contains('preloading') || motionQuery.matches) {
         raf = requestAnimationFrame(tick)
         return
       }
 
       const s = stateRef.current
 
-      if (!s.dragging && s.boost > 0.5) {
+      if (!s.dragging && Math.abs(s.boost) > 0.5) {
         s.boost *= Math.exp(-MARQUEE_BOOST_DECAY_RATE * dt)
       } else if (!s.dragging) {
         s.boost = 0
       }
 
-      s.offset -= (s.baseSpeed + s.boost) * dt
+      if (!s.dragging) s.offset += (-s.baseSpeed + s.boost) * dt
       if (s.loopWidth > 0 && s.offset <= -s.loopWidth) {
         s.offset += s.loopWidth
       }
+      if (s.loopWidth > 0) s.offset = ((s.offset % s.loopWidth) - s.loopWidth) % s.loopWidth
       track.style.transform = `translateX(${s.offset}px)`
 
       raf = requestAnimationFrame(tick)
@@ -139,10 +141,14 @@ export function ZineMarquee() {
     if (!s.dragging) return
     const now = performance.now()
     const dt = Math.max((now - s.lastT) / 1000, 1 / 120)
-    const velocity = Math.abs(e.clientX - s.lastX) / dt
+    const delta = e.clientX - s.lastX
+    const velocity = delta / dt
+    s.offset += delta
+    if (s.loopWidth > 0) s.offset = ((s.offset % s.loopWidth) - s.loopWidth) % s.loopWidth
+    if (trackRef.current) trackRef.current.style.transform = `translateX(${s.offset}px)`
     s.lastX = e.clientX
     s.lastT = now
-    s.boost = Math.min(velocity, MARQUEE_MAX_BOOST)
+    s.boost = Math.max(-MARQUEE_MAX_BOOST, Math.min(velocity, MARQUEE_MAX_BOOST))
   }
 
   const endDrag = () => {

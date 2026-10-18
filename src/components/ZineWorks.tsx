@@ -3,11 +3,11 @@ import { AnimateIcon } from './animate-ui/icons/icon'
 import { ArrowRight } from './animate-ui/icons/arrow-right'
 
 const CARD_CONFIG = [
-  { spanClass: 'c-a', kind: 'AI · RAG',      status: "Shipped '25", featured: true },
-  { spanClass: 'c-b', kind: 'AI · TOOLS',    status: "Shipped '25", featured: false },
-  { spanClass: 'c-c', kind: 'DEVOPS · CLI',  status: "Shipped '24", featured: false },
-  { spanClass: 'c-d', kind: 'CI/CD · OPS',   status: "Shipped '24", featured: false },
-  { spanClass: 'c-e', kind: 'PYTHON · OSS',  status: "Shipped '24", featured: false },
+  { spanClass: 'c-a', kind: 'SECURITY · CLI', status: "Shipped '25", featured: true },
+  { spanClass: 'c-b', kind: 'UI · OSS', status: "Shipped '24", featured: false },
+  { spanClass: 'c-c', kind: 'AI · TOOLS', status: "Shipped '24", featured: false },
+  { spanClass: 'c-d', kind: 'CI/CD · OPS', status: "Shipped '24", featured: false },
+  { spanClass: 'c-e', kind: 'AI · RAG', status: "Shipped '25", featured: false },
 ]
 
 function CardTitle({ title }: { title: string }) {

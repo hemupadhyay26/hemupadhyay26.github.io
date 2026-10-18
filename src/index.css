@@ -36,7 +36,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
-  cursor: none;
+
 }
 
 html,
@@ -46,14 +46,14 @@ body {
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  cursor: none;
+
   min-height: 100vh;
   overflow-x: hidden;
 }
 
 a,
 button {
-  cursor: none;
+
 }
 
 ::selection {
@@ -84,9 +84,6 @@ button {
   background: var(--ink-3);
 }
 
-/* ── Custom cursor: force hide native cursor everywhere on desktop ── */
-@media (pointer: fine) {
-  *, *::before, *::after {
-    cursor: none !important;
-  }
-}
+
+ a, button { cursor: pointer; touch-action: manipulation; }
+:root { font-optical-sizing: auto; }

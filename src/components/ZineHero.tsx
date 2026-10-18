@@ -1,42 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
 import { resumeFile, tracks } from '../data'
 import heroPortrait from '../assets/hero-cinematic.webp'
+import cloudPortrait from '../assets/hero-cloud-reveal.webp'
+import { ImageReveal } from './ImageReveal'
 import { AnimateIcon } from './animate-ui/icons/icon'
 import { Play } from './animate-ui/icons/play'
 import { Pause } from './animate-ui/icons/pause'
 import { ArrowRight } from './animate-ui/icons/arrow-right'
 
-const heroName = 'Hem Upadhyay'
-const decodeSymbols = '#%*+?<>/\\{}[]~'
-
 export function ZineHero({ ready }: { ready: boolean }) {
-  const [decodedName, setDecodedName] = useState(heroName)
   const [trackIdx, setTrackIdx] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   const track = tracks[trackIdx]
-
-  useEffect(() => {
-    if (!ready || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    let frame: number
-    let started: number | undefined
-    let lastUpdate = -Infinity
-    const decode = (now: number) => {
-      started ??= now
-      const progress = Math.min((now - started) / 1400, 1)
-      if (now - lastUpdate >= 55 || progress === 1) {
-        lastUpdate = now
-        const resolved = Math.floor(progress * heroName.length)
-        setDecodedName(Array.from(heroName, (letter, index) =>
-          letter === ' ' || index < resolved ? letter : decodeSymbols[Math.floor(Math.random() * decodeSymbols.length)]
-        ).join(''))
-      }
-      if (progress < 1) frame = requestAnimationFrame(decode)
-    }
-    frame = requestAnimationFrame(decode)
-    return () => cancelAnimationFrame(frame)
-  }, [ready])
 
   useEffect(() => {
     const audio = new Audio(track.src)
@@ -68,18 +45,16 @@ export function ZineHero({ ready }: { ready: boolean }) {
 
   return (
     <section className="hero3" id="hero" aria-labelledby="hero-title" data-ready={ready}>
-      <div className="bg" aria-hidden="true" style={{ backgroundImage: `url(${heroPortrait})` }} />
-      <div className="hero-smoke" aria-hidden="true"><i /><i /></div>
+      <ImageReveal baseSrc={heroPortrait} overlaySrc={cloudPortrait} alt="Hem Upadhyay, lit in red against a dark studio background" overlayAlt="The same portrait in a cyan-lit cloud infrastructure environment with server racks and connected deployment paths" />
       <div className="grain" />
 
       <div className="hero-content">
         <p className="hero-role reveal">DevOps / Cloud Engineer</p>
         <h1 id="hero-title" className="reveal d1" aria-label="Hem Upadhyay">
-          <span className="hero-name-word" aria-hidden="true"><span className="hero-name-measure">Hem</span><span className="hero-name-decoded">{decodedName.slice(0, 3)}</span></span>{' '}
-          <span className="hero-name-word" aria-hidden="true"><span className="hero-name-measure">Upadhyay<span className="hero-period">.</span></span><span className="hero-name-decoded">{decodedName.slice(4)}<span className="hero-period">.</span></span></span>
+          <span>Hem</span>{' '}<span className="hero-surname">Upadhyay<span className="hero-period">.</span></span>
         </h1>
         <aside className="hero-intro reveal d2" aria-label="A little about me">
-          <p>Curious and driven tech enthusiast who loves stepping out of comfort zones, exploring new trends, and solving problems with modern, practical solutions—while staying grounded in strong foundational knowledge.</p>
+          <p>Curious by nature. Grounded in the fundamentals. I turn complex problems into practical, reliable systems.</p>
         </aside>
         <p className="hero-description reveal d2">
           AWS infrastructure, automated pipelines,<br className="hero-copy-break" /> and systems built to hold up.
@@ -91,7 +66,7 @@ export function ZineHero({ ready }: { ready: boolean }) {
       </div>
 
       <div className={`np np-hero${!isPlaying ? ' paused' : ''}`}>
-        <img className="hero-music-cover" src={heroPortrait} alt="" />
+        <div className="hero-waveform" aria-hidden="true">{Array.from({ length: 13 }, (_, i) => <i key={i} style={{ animationDelay: `-${i * .13}s`, animationDuration: `${.65 + (i % 5) * .12}s` }} />)}</div>
         <div className="hero-music-details">
           <span className="hero-music-status">{isPlaying ? 'Now playing' : 'On repeat'}</span>
           <span className="hero-music-title">{track.title}</span>
@@ -101,6 +76,7 @@ export function ZineHero({ ready }: { ready: boolean }) {
           <button
             className="np-btn"
             onClick={togglePlay}
+            aria-pressed={isPlaying}
             aria-label={isPlaying ? 'Pause' : 'Play'}
           >
             {isPlaying ? <Pause size={18} /> : <Play size={18} />}
