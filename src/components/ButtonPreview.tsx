@@ -206,7 +206,7 @@ export function ButtonPreview({ idleGapMs = 10000, highlight = false, compact = 
         <g ref={extraThreadsRef} className="symbiote-extra-threads">
           {Array.from({ length: 5 }, (_, index) => (
             <g key={index}>
-              <path className="symbiote-tendril" style={{ fill: highlight ? `url(#${liquidId}-skin)` : "#07080a" }} />
+              <path className="symbiote-tendril" style={{ fill: highlight ? `url(#${liquidId}-skin)` : "var(--venom-fluid, #060805)" }} />
               <path className="symbiote-tendril-sheen" />
             </g>
           ))}

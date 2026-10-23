@@ -70,14 +70,14 @@
   position: absolute;
   inset: -3px;
   border-radius: 999px;
-  background: #07080a;
+  background: #060805;
 }
 .symbiote-drop {
   position: absolute;
   width: 34px;
   height: 28px;
   border-radius: 48% 52% 62% 38%;
-  background: #07080a;
+  background: #060805;
   animation: symbiote-flow 3.8s ease-in-out infinite;
   will-change: transform;
 }
@@ -117,7 +117,7 @@
   pointer-events: none;
   filter: drop-shadow(0 -1px 0 #8e96a84d) drop-shadow(0 3px 4px #0005);
 }
-.symbiote-main-thread { fill: #07080a; opacity: 0; }
+.symbiote-main-thread { fill: #060805; opacity: 0; }
 .symbiote-fine-thread {
   fill: none;
   stroke: #090a0d;
@@ -131,7 +131,7 @@
   .symbiote-threads { display: none; }
 }
 
-.symbiote-extra-threads path { fill: #07080a; opacity: 0; }
+.symbiote-extra-threads path { fill: #060805; opacity: 0; }
 
 .symbiote .button-preview-control {
   justify-content: center;
@@ -159,7 +159,7 @@
 
 /* One uninterrupted material: strand roots disappear into the body. */
 .symbiote-threads { filter: none; }
-.symbiote-extra-threads path { fill: #07080a; }
+.symbiote-extra-threads path { fill: #060805; }
 
 .symbiote .button-preview-control > .symbiote-word {
   display: inline-block;
@@ -245,7 +245,7 @@
   filter: blur(5px);
 }
 .button-preview--highlight .symbiote-drop {
-  background: radial-gradient(ellipse at 30% 18%, #191e26, #090b0f 55%, #07080a);
+  background: radial-gradient(ellipse at 30% 18%, #191e26, #090b0f 55%, #060805);
 }
 .button-preview--highlight .symbiote { filter: drop-shadow(0 -1px 0 #9cabc714) drop-shadow(0 8px 12px #0004); }
 @media (max-width: 640px) {
@@ -298,5 +298,17 @@
 .hero-resume-symbiote .button-preview--nav .symbiote-threads { z-index: 0; }
 .hero-resume-symbiote .button-preview-control { white-space: nowrap; }
 
-.symbiote-web path { fill: #07080a; opacity: 0; }
+.symbiote-web path { fill: #060805; opacity: 0; }
 .button-preview:not(.button-preview--highlight) .symbiote-tendril-sheen { display: none; }
+
+/* Final flat finish shared by the navbar and hero resume links. */
+.button-preview--nav { --venom-fluid: #060805; }
+.button-preview--nav .symbiote-body,
+.button-preview--nav .symbiote-drop { background: var(--venom-fluid); }
+.button-preview--nav .symbiote { filter: none; }
+.button-preview--nav .symbiote-body::before,
+.button-preview--nav .symbiote-body::after { content: none; }
+.button-preview--nav .symbiote-web path { fill: var(--venom-fluid); }
+.button-preview--nav .symbiote-tendril { stroke: none; }
+.button-preview--nav .symbiote-word { text-shadow: none; }
+.button-preview--nav .symbiote-eyes { filter: none; }
