@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { resumeFile, tracks } from '../data'
+import { tracks } from '../data'
 import heroPortrait from '../assets/hero-cinematic.webp'
 import cloudPortrait from '../assets/hero-cloud-reveal.webp'
 import { ImageReveal } from './ImageReveal'
+import { ButtonPreview } from './ButtonPreview'
 import { AnimateIcon } from './animate-ui/icons/icon'
 import { Play } from './animate-ui/icons/play'
 import { Pause } from './animate-ui/icons/pause'
@@ -61,7 +62,7 @@ export function ZineHero({ ready }: { ready: boolean }) {
         </p>
         <div className="hero-actions reveal d3">
           <a className="hero-work-link" href="#work">Explore work <ArrowRight size={26} aria-hidden="true" /></a>
-          <a className="hero-resume-link" href={resumeFile} target="_blank" rel="noopener noreferrer">Resume</a>
+          <div className="hero-resume-symbiote"><ButtonPreview compact /></div>
         </div>
       </div>
 

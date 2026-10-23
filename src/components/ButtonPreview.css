@@ -1,0 +1,302 @@
+.button-preview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
+  padding: 108px clamp(20px, 4.5vw, 80px) 28px;
+  background: #151211;
+  color: #f5efe8;
+  border-bottom: 1px solid #ffffff12;
+}
+.button-preview-label,
+.button-preview-note {
+  font: 400 10px/1.6 var(--mono);
+  letter-spacing: .12em;
+  color: #b5a9a0;
+}
+.button-preview-label { text-transform: uppercase; }
+.button-preview-center {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 40px 0;
+}
+.button-preview-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 36px;
+  min-height: 60px;
+  padding: 8px 10px 8px 26px;
+  border-radius: 999px;
+  border: 1px solid #f5efe82e;
+  color: #f5efe8;
+  background: #25201d;
+  box-shadow: inset 0 1px 0 #ffffff0d, 0 4px 12px #0003;
+  font: 500 16px/1.3 var(--sans);
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.button-preview-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff4eb;
+  background: #c74a34;
+  transition: transform .25s ease, background .2s ease;
+}
+.button-preview-control:hover { background: #302722; border-color: #f5efe866; }
+.button-preview-control:hover .button-preview-icon { transform: rotate(45deg); background: #e2573e; }
+.button-preview-control:active { transform: scale(.97); }
+.button-preview-control:focus-visible { outline: 2px solid #f5efe8; outline-offset: 6px; }
+.button-preview-note { text-align: center; letter-spacing: .02em; }
+@media (prefers-reduced-motion: reduce) {
+  .button-preview-control, .button-preview-icon { transition: none; }
+  .button-preview-control:hover .button-preview-icon { transform: none; }
+}
+
+/* Viscous silhouettes merge through an alpha-threshold filter. */
+.button-preview { background: #232429; }
+.symbiote {
+  position: relative;
+  isolation: isolate;
+  --spread: 1;
+  filter: drop-shadow(0 -1px 0 #a6abb84a) drop-shadow(0 12px 14px #0008);
+}
+.symbiote:hover, .symbiote:focus-within { --spread: 1.65; }
+.symbiote-filter { position: absolute; width: 0; height: 0; pointer-events: none; }
+.symbiote-liquid { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.symbiote-body {
+  position: absolute;
+  inset: -3px;
+  border-radius: 999px;
+  background: #07080a;
+}
+.symbiote-drop {
+  position: absolute;
+  width: 34px;
+  height: 28px;
+  border-radius: 48% 52% 62% 38%;
+  background: #07080a;
+  animation: symbiote-flow 3.8s ease-in-out infinite;
+  will-change: transform;
+}
+.symbiote-drop-0 { left: 12%; top: -8px; --dx: -12px; --dy: -23px; animation-delay: -.8s; }
+.symbiote-drop-1 { left: 43%; top: -6px; --dx: 16px; --dy: -20px; animation-delay: -2.2s; width: 24px; }
+.symbiote-drop-2 { right: 6%; top: -2px; --dx: 24px; --dy: -16px; animation-delay: -1.4s; }
+.symbiote-drop-3 { right: -8px; top: 22px; --dx: 27px; --dy: 7px; animation-delay: -2.8s; width: 30px; }
+.symbiote-drop-4 { right: 18%; bottom: -8px; --dx: 8px; --dy: 23px; animation-delay: -.3s; }
+.symbiote-drop-5 { left: 35%; bottom: -7px; --dx: -16px; --dy: 22px; animation-delay: -2.6s; width: 23px; }
+.symbiote-drop-6 { left: 6%; bottom: -5px; --dx: -22px; --dy: 18px; animation-delay: -1.9s; }
+.symbiote-drop-7 { left: -10px; top: 12px; --dx: -28px; --dy: -5px; animation-delay: -3.2s; width: 28px; }
+.symbiote .button-preview-control {
+  border-color: #ffffff0d;
+  background: linear-gradient(165deg, #202126, #08090c 65%);
+  box-shadow: inset 0 1px 0 #ffffff16;
+  gap: 38px;
+  min-height: 64px;
+}
+.symbiote .button-preview-control:hover { border-color: #ffffff20; background: linear-gradient(165deg, #292a30, #08090c 65%); }
+.symbiote .button-preview-icon { background: #dddfe4; color: #101115; box-shadow: inset 0 1px 0 #fff; }
+.symbiote .button-preview-control:hover .button-preview-icon { background: #fff; }
+@keyframes symbiote-flow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  42% { transform: translate(calc(var(--dx) * var(--spread)), calc(var(--dy) * var(--spread))) scale(.7, 1.2) rotate(32deg); }
+  70% { transform: translate(calc(var(--dx) * .35), calc(var(--dy) * .4)) scale(1.2, .8) rotate(-12deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .symbiote-drop { animation: none; will-change: auto; }
+}
+
+.symbiote-threads {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  filter: drop-shadow(0 -1px 0 #8e96a84d) drop-shadow(0 3px 4px #0005);
+}
+.symbiote-main-thread { fill: #07080a; opacity: 0; }
+.symbiote-fine-thread {
+  fill: none;
+  stroke: #090a0d;
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0;
+}
+.button-preview[data-attracted="true"] .symbiote { --spread: 1.45; }
+.button-preview-center { position: relative; }
+@media (prefers-reduced-motion: reduce) {
+  .symbiote-threads { display: none; }
+}
+
+.symbiote-extra-threads path { fill: #07080a; opacity: 0; }
+
+.symbiote .button-preview-control {
+  justify-content: center;
+  min-width: 190px;
+  padding: 18px 36px;
+  gap: 0;
+}
+
+/* The label belongs to the liquid, without a separate button shell. */
+.symbiote .button-preview-control,
+.symbiote .button-preview-control:hover {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #f2f0ef;
+}
+.symbiote {
+  filter: drop-shadow(0 8px 12px #0004);
+}
+.symbiote-body { inset: 0; }
+.symbiote .button-preview-control:focus-visible {
+  outline: 2px solid #d9dbe1;
+  outline-offset: 14px;
+}
+
+/* One uninterrupted material: strand roots disappear into the body. */
+.symbiote-threads { filter: none; }
+.symbiote-extra-threads path { fill: #07080a; }
+
+.symbiote .button-preview-control > .symbiote-word {
+  display: inline-block;
+  font-family: "Yellowtail", "Brush Script MT", cursive;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  transform: none;
+  color: #eeeae4;
+}
+
+
+
+.symbiote-extra-threads .symbiote-tendril-sheen {
+  fill: none;
+  stroke: #96a0af;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: blur(.5px);
+}
+
+
+.symbiote .button-preview-control { position: relative; }
+.symbiote-word { transform-origin: center; }
+.symbiote-eyes {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.symbiote-eyes {
+  width: 112px;
+  height: 45px;
+  fill: #f5f4f1;
+  overflow: visible;
+}
+
+.symbiote-eyes {
+  width: 120px;
+  height: 66px;
+  filter: none;
+}
+
+
+.symbiote-forge {
+  position: absolute;
+  width: 170px;
+  height: 90px;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* Compare the same animation in matte and subtly lit finishes. */
+.button-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.button-comparison .button-preview { padding-left: 24px; padding-right: 24px; }
+.button-comparison .button-preview + .button-preview { border-left: 1px solid #ffffff0d; }
+.button-preview--highlight .symbiote-body {
+  background:
+    radial-gradient(ellipse at 38% 8%, #252a32 0%, #12161c 22%, transparent 52%),
+    linear-gradient(165deg, #101319 4%, #080a0e 48%, #050608 78%);
+}
+.button-preview--highlight .symbiote-body::before {
+  content: '';
+  position: absolute;
+  inset: 5px 22px 18px 14px;
+  border-radius: 48% 55% 44% 58%;
+  background: radial-gradient(ellipse at 35% 0%, #b5c2d34d, transparent 66%);
+  opacity: .2;
+}
+.button-preview--highlight .symbiote-body::after {
+  content: '';
+  position: absolute;
+  left: 22%;
+  right: 20%;
+  bottom: 4px;
+  height: 8px;
+  border-radius: 50%;
+  background: #60758f;
+  opacity: .05;
+  filter: blur(5px);
+}
+.button-preview--highlight .symbiote-drop {
+  background: radial-gradient(ellipse at 30% 18%, #191e26, #090b0f 55%, #07080a);
+}
+.button-preview--highlight .symbiote { filter: drop-shadow(0 -1px 0 #9cabc714) drop-shadow(0 8px 12px #0004); }
+@media (max-width: 640px) {
+  .button-comparison { grid-template-columns: 1fr; }
+  .button-comparison .button-preview + .button-preview { padding-top: 28px; min-height: 320px; border-left: 0; }
+}
+
+/* Navbar edition of the matte liquid resume link. */
+.button-preview.button-preview--nav {
+  display: grid;
+  place-items: center;
+  flex: 0 0 112px;
+  width: 112px;
+  min-height: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #f5efe8;
+  overflow: visible;
+}
+.button-preview--nav .button-preview-center {
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 48px;
+  padding: 0;
+}
+.button-preview--nav .symbiote {
+  position: absolute;
+  transform: scale(.54);
+  transform-origin: center;
+}
+.button-preview--nav .button-preview-control { text-decoration: none; }
+.button-preview--nav .symbiote-threads { z-index: -1; }
+.button-preview--nav .symbiote-tendril-sheen { display: none; }
+@media (max-width: 640px) {
+  .button-preview.button-preview--nav,
+  .button-preview--nav .button-preview-center { width: 88px; flex-basis: 88px; }
+  .button-preview--nav .symbiote { transform: scale(.46); }
+  .nav-group { gap: 8px; }
+}
+
+.hero-resume-symbiote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+}
+.hero-resume-symbiote .button-preview--nav .symbiote-threads { z-index: 0; }
+.hero-resume-symbiote .button-preview-control { white-space: nowrap; }
+
+.symbiote-web path { fill: #07080a; opacity: 0; }
+.button-preview:not(.button-preview--highlight) .symbiote-tendril-sheen { display: none; }

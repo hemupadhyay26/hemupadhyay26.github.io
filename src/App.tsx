@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { ZinePreloader } from './components/ZinePreloader'
+import { ButtonPreview } from './components/ButtonPreview'
 import { ZineHero } from './components/ZineHero'
 import { ZineWorks } from './components/ZineWorks'
 import { ZineTerminal } from './components/ZineTerminal'
 import { HangingCharacterWidget } from 'swingly/react'
 import { ZineMarquee, ZineAbout, ZineNow, ZineStack, ZineExp, ZineContact } from './components/ZineSections'
-import { resumeFile, isAvailableForWork } from './data'
+import { isAvailableForWork } from './data'
 import './App.css'
 
 export default function App() {
@@ -53,9 +54,7 @@ export default function App() {
             <a href="#terminal">Terminal</a>
             <a href="#contact">Contact</a>
           </nav>
-          <a className="resume-btn" href={resumeFile} target="_blank" rel="noopener noreferrer">
-            Resume
-          </a>
+          <ButtonPreview compact />
         </div>
 
         {/* Zero-height strip along the navbar's bottom edge — the charm hangs from here */}
