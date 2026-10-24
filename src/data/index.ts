@@ -3,7 +3,7 @@ import resumeFile from '../assets/hem_upadhyay_resume.pdf'
 import projectInfuseAi from '../assets/projectInfuseAi.webp'
 import projectInterviewAi from '../assets/projectInterviewAi.webp'
 import projectSshCredManager from '../assets/project-ssh-v2.webp'
-import projectSlackNotification from '../assets/projectSlackNotification.webp'
+import projectResumeStarter from '../assets/project-resume-starter.webp'
 import projectSwingly from '../assets/projectSwingly.webp'
 import audio1 from '../assets/audio/audio1.mp3'
 import audio2 from '../assets/audio/audio2.mp3'
@@ -40,11 +40,11 @@ export const myWork: Project[] = [
     url: 'https://github.com/hemupadhyay26/interview-prep-helper/',
   },
   {
-    title: 'Slack Notification Template',
-    description: 'A template for creating and sending notifications to Slack channels, enhancing team communication during CI/CD processes.',
-    cover: 'slack notification template',
-    image: projectSlackNotification,
-    url: 'https://github.com/hemupadhyay26/slack-github-action-template',
+    title: 'Resume Starter Pack',
+    description: 'A visual resume editor with live one-page preview, drag-and-drop sections, and versioned PDF releases. Build and export your resume without writing LaTeX or JSON.',
+    cover: 'resume starter pack',
+    image: projectResumeStarter,
+    url: 'https://github.com/hemupadhyay26/resume-starter-pack',
   },
   {
     title: 'Infuse AI',

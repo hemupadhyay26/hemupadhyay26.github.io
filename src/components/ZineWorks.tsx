@@ -6,7 +6,7 @@ const CARD_CONFIG = [
   { spanClass: 'c-a', kind: 'SECURITY · CLI', status: "Shipped '25", featured: true },
   { spanClass: 'c-b', kind: 'UI · OSS', status: "Shipped '24", featured: false },
   { spanClass: 'c-c', kind: 'AI · TOOLS', status: "Shipped '24", featured: false },
-  { spanClass: 'c-d', kind: 'CI/CD · OPS', status: "Shipped '24", featured: false },
+  { spanClass: 'c-d', kind: 'TOOLS · EDITOR', status: "Shipped '26", featured: false },
   { spanClass: 'c-e', kind: 'AI · RAG', status: "Shipped '25", featured: false },
 ]
 
